@@ -104,76 +104,6 @@
             left: auto !important;
         }
 
-        #tawk-container {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            z-index: 9999;
-            cursor: move;
-            background: transparent;
-        }
-
-        #hideTawk {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: red;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        #showTawkBtn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #008080;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 16px;
-            font-size: 14px;
-            z-index: 9999;
-            display: none;
-        }
-
-        #darkToggle {
-            position: fixed;
-            top: 10px;
-            right: 15px;
-            z-index: 9999;
-            background: #008080;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 15px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        #dailyTip {
-            font-size: 16px;
-            margin-top: 10px;
-            color: #444;
-        }
-
-        .help-float {
-            position: fixed;
-            bottom: 100px;
-            left: 15px;
-            background: #00bfa5;
-            color: white;
-            padding: 12px 18px;
-            border-radius: 20px;
-            z-index: 9999;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            cursor: pointer;
-        }
-
         /* Hide Kommunicate agent profile */
         .kommunicate-custom-iframe .km-chat-header,
         .kommunicate-custom-iframe .km-agent-profile {
@@ -215,65 +145,7 @@
     <p>Have feedback or questions? Email us at <b>swasthai@yourmail.com</b><br> कोई सुझाव या प्रश्न हैं? हमें इस ईमेल पर भेजें: <b>swasthai@yourmail.com</b></p>
 </section>
 
-<!-- Tawk.to Script -->
-<div id="tawk-container">
-    <button id="hideTawk">×</button>
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function(){
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/67f13b91374ed81909178624/1io351cj7';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-</div>
-
-<button id="showTawkBtn">Show Chat</button>
-
 <script>
-    // Drag Tawk.to
-    dragElement(document.getElementById("tawk-container"));
-    function dragElement(elmnt) {
-        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-        elmnt.onmousedown = dragMouseDown;
-        function dragMouseDown(e) {
-            e = e || window.event;
-            if (e.target.id === "hideTawk") return;
-            e.preventDefault();
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            document.onmouseup = closeDragElement;
-            document.onmousemove = elementDrag;
-        }
-        function elementDrag(e) {
-            e = e || window.event;
-            e.preventDefault();
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        }
-        function closeDragElement() {
-            document.onmouseup = null;
-            document.onmousemove = null;
-        }
-    }
-
-    // Show/Hide Tawk Chat
-    document.getElementById("hideTawk").onclick = function() {
-        document.getElementById("tawk-container").style.display = "none";
-        document.getElementById("showTawkBtn").style.display = "block";
-    };
-    document.getElementById("showTawkBtn").onclick = function() {
-        document.getElementById("tawk-container").style.display = "block";
-        document.getElementById("showTawkBtn").style.display = "none";
-    };
-
     // Dark Mode Toggle
     document.getElementById("darkToggle").onclick = function() {
         document.body.classList.toggle("dark-mode");
