@@ -86,9 +86,9 @@
     <section>
         <h2>💬 AI Health Chatbot</h2>
         <p>Click below to talk with our chatbot:</p>
-        <a href="#" class="button">Start Chat</a>
+        <button class="button" onclick="Kommunicate && Kommunicate.launchConversation();">Start Chat</button>
     </section>
-
+    
     <section>
         <h2>📋 Medicine Reminder</h2>
         <p>Set a reminder using our simple form:</p>
@@ -113,20 +113,21 @@
     })();
     </script>
 
-    <!-- Kommunicate AI Chatbot Script -->
-    <script type="text/javascript">
-        (function(d, m){
-            var kommunicateSettings = {
-                "appId": "14f1b5084fbedbb7258a9d155df38a82b", // Replace with your actual App ID
-                "popupWidget": true,
-                "automaticChatOpenOnNavigation": true
-            };
-            var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
-            s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-            var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
-            window.kommunicate = m; m._globals = kommunicateSettings;
-        })(document, window.kommunicate || {});
-    </script>
+ <!-- Kommunicate AI Chatbot Script -->
+<script type="text/javascript">
+    (function(d, m){
+        var kommunicateSettings = {
+            "appId": "14f1b5084fbedbb7258a9d155df38a82b", // ✅ Your App ID
+            "popupWidget": true,
+            "automaticChatOpenOnNavigation": true
+        };
+        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+        window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
+</script>
+
 
     <footer>
         <p>&copy; 2025 SwasthAI | Built with ❤️ by You</p>
