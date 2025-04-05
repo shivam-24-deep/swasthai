@@ -48,7 +48,7 @@
             background: white;
             border-radius: 15px;
             box-shadow: 0 6px 12px rgba(0,0,0,0.07);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
 
         body.dark-mode section {
@@ -99,22 +99,57 @@
             }
         }
 
-        .kommunicate-widget-launcher {
-            right: 15px !important;
-            left: auto !important;
+        #darkToggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 999;
+            background: #008080;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            cursor: pointer;
         }
 
-        /* Hide Kommunicate agent profile */
-        .kommunicate-custom-iframe .km-chat-header,
-        .kommunicate-custom-iframe .km-agent-profile {
-            display: none !important;
+        #chatButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #00c853;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        #hideChat {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: #ff3d00;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
 
-<button id="darkToggle">Dark Mode</button>
-<div class="help-float" onclick="Kommunicate.launchConversation();">💬 Help?</div>
+<button id="darkToggle">Dark</button>
+<button id="chatButton" onclick="Kommunicate.launchConversation();">💬</button>
+<button id="hideChat">Hide Chat</button>
 
 <header>
     <h1>Welcome to SwasthAI / स्वागत है स्वास्थAI में</h1>
@@ -141,6 +176,12 @@
 </section>
 
 <section>
+    <h2>🧪 Health Quiz / स्वास्थ्य क्विज़</h2>
+    <p>Take a quick health quiz and check your health knowledge! <br> एक त्वरित स्वास्थ्य क्विज़ लें और अपने ज्ञान की जाँच करें!</p>
+    <a href="https://forms.gle/your-health-quiz-link" class="button" target="_blank">Start Quiz / क्विज़ शुरू करें</a>
+</section>
+
+<section>
     <h2>📞 Contact Us / हमसे संपर्क करें</h2>
     <p>Have feedback or questions? Email us at <b>swasthai@yourmail.com</b><br> कोई सुझाव या प्रश्न हैं? हमें इस ईमेल पर भेजें: <b>swasthai@yourmail.com</b></p>
 </section>
@@ -149,7 +190,7 @@
     // Dark Mode Toggle
     document.getElementById("darkToggle").onclick = function() {
         document.body.classList.toggle("dark-mode");
-        this.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
+        this.textContent = document.body.classList.contains("dark-mode") ? "Light" : "Dark";
     };
 
     // Daily Tip
@@ -163,6 +204,15 @@
         "Take deep breaths to reduce stress."
     ];
     document.getElementById("dailyTip").textContent = tips[new Date().getDate() % tips.length];
+
+    // Hide Chat Button
+    document.getElementById("hideChat").onclick = function() {
+        var widget = document.getElementById("kommunicate-widget-iframe");
+        if (widget) {
+            widget.style.display = widget.style.display === "none" ? "block" : "none";
+            this.textContent = widget.style.display === "none" ? "Show Chat" : "Hide Chat";
+        }
+    };
 </script>
 
 <!-- Kommunicate Script -->
@@ -171,7 +221,7 @@
         var kommunicateSettings = {
             "appId": "14f1b5084fbedbb7258a9d155df38a82b",
             "popupWidget": true,
-            "automaticChatOpenOnNavigation": true
+            "automaticChatOpenOnNavigation": false
         };
         var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
         s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
