@@ -22,7 +22,7 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom right, #f0fdfa, #ccfbf1);
+            background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
             color: #333;
         }
 
@@ -89,6 +89,12 @@
                 padding: 15px;
             }
         }
+
+        /* Chatbot alignment fix */
+        .kommunicate-widget-launcher {
+            right: 15px !important;
+            left: auto !important;
+        }
     </style>
 </head>
 <body>
@@ -104,7 +110,6 @@
         <a href="javascript:void(0);" class="button" onclick="Kommunicate.launchConversation();">
             Start Chat / चैट शुरू करें
         </a>
-        
     </section>
 
     <section>
