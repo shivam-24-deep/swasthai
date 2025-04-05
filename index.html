@@ -234,7 +234,7 @@
 <button id="showTawkBtn">Show Chat</button>
 
 <script>
-    // Drag + Show/Hide
+    // Drag Tawk.to
     dragElement(document.getElementById("tawk-container"));
     function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -264,11 +264,11 @@
         }
     }
 
+    // Show/Hide Tawk Chat
     document.getElementById("hideTawk").onclick = function() {
         document.getElementById("tawk-container").style.display = "none";
         document.getElementById("showTawkBtn").style.display = "block";
     };
-
     document.getElementById("showTawkBtn").onclick = function() {
         document.getElementById("tawk-container").style.display = "block";
         document.getElementById("showTawkBtn").style.display = "none";
@@ -280,7 +280,7 @@
         this.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
     };
 
-    // Health Tip List
+    // Daily Tip
     const tips = [
         "Drink 8 glasses of water a day.",
         "Walk at least 30 minutes daily.",
@@ -290,8 +290,7 @@
         "Stretch your body every morning.",
         "Take deep breaths to reduce stress."
     ];
-    const todayTip = tips[new Date().getDate() % tips.length];
-    document.getElementById("dailyTip").textContent = todayTip;
+    document.getElementById("dailyTip").textContent = tips[new Date().getDate() % tips.length];
 </script>
 
 <!-- Kommunicate Script -->
