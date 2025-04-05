@@ -130,26 +130,12 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             z-index: 1000;
         }
-
-        #hideChat {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            background: #ff3d00;
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 10px 20px;
-            cursor: pointer;
-            z-index: 1000;
-        }
     </style>
 </head>
 <body>
 
-<button id="darkToggle">Dark</button>
-<button id="chatButton" onclick="Kommunicate.launchConversation();">💬</button>
-<button id="hideChat">Hide Chat</button>
+<button id="darkToggle" onclick="toggleDarkMode()">Dark</button>
+<button id="chatButton" onclick="launchChat()" title="Chat with AI Health Assistant">💬</button>
 
 <header>
     <h1>Welcome to SwasthAI / स्वागत है स्वास्थAI में</h1>
@@ -157,63 +143,62 @@
 </header>
 
 <section>
-    <h2>💬 AI Health Chatbot / एआई स्वास्थ्य चैटबॉट</h2>
-    <p>Click below to talk with our chatbot: <br> हमारे चैटबॉट से बात करने के लिए नीचे क्लिक करें:</p>
-    <a href="javascript:void(0);" class="button" onclick="Kommunicate.launchConversation();">
-        Start Chat / चैट शुरू करें
-    </a>
+    <h2>✅ Health Checklist Tool</h2>
+    <p>Track daily water, meals, and exercise.</p>
+    <a href="https://swasthai.netlify.app/checklist" class="button">Open Checklist</a>
 </section>
 
 <section>
-    <h2>📋 Medicine Reminder / दवाई की याद दिलाने वाला फॉर्म</h2>
-    <p>Set a reminder using our simple form: <br> हमारे सरल फॉर्म से दवाई की याद सेट करें:</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1FInlQFUmD4z1-pRCg61UlGE4aGWcv_p2sr0gexyGPCRgGQ/viewform?usp=header" class="button" target="_blank">Open Form / फॉर्म खोलें</a>
+    <h2>🕒 Medicine Reminder Notifications</h2>
+    <p>Get email reminders for medicine using free services.</p>
+    <a href="https://forms.gle/YOUR_FORM_LINK" class="button">Set Reminders</a>
 </section>
 
 <section>
-    <h2>🧠 Daily Health Tip / दैनिक स्वास्थ्य सुझाव</h2>
-    <p id="dailyTip"></p>
+    <h2>📈 BMI Calculator</h2>
+    <p>Calculate your Body Mass Index based on your height and weight.</p>
+    <a href="https://swasthai.netlify.app/bmi" class="button">Check BMI</a>
 </section>
 
 <section>
-    <h2>🧪 Health Quiz / स्वास्थ्य क्विज़</h2>
-    <p>Take a quick health quiz and check your health knowledge! <br> एक त्वरित स्वास्थ्य क्विज़ लें और अपने ज्ञान की जाँच करें!</p>
-    <a href="https://forms.gle/your-health-quiz-link" class="button" target="_blank">Start Quiz / क्विज़ शुरू करें</a>
+    <h2>🌐 Multi-language (English ↔ Hindi)</h2>
+    <p>Switch site language easily for better experience.</p>
+    <a href="https://swasthai.netlify.app/language" class="button">Switch Language</a>
 </section>
 
 <section>
-    <h2>📞 Contact Us / हमसे संपर्क करें</h2>
-    <p>Have feedback or questions? Email us at <b>swasthai@yourmail.com</b><br> कोई सुझाव या प्रश्न हैं? हमें इस ईमेल पर भेजें: <b>swasthai@yourmail.com</b></p>
+    <h2>📍 Nearby Clinics Map</h2>
+    <p>Find nearby health clinics using your location.</p>
+    <a href="https://swasthai.netlify.app/clinics" class="button">Open Map</a>
 </section>
 
-<script>
-    // Dark Mode Toggle
-    document.getElementById("darkToggle").onclick = function() {
-        document.body.classList.toggle("dark-mode");
-        this.textContent = document.body.classList.contains("dark-mode") ? "Light" : "Dark";
-    };
+<section>
+    <h2>🗣️ Voice-to-Text Chat Input</h2>
+    <p>Speak instead of typing while chatting with the bot.</p>
+    <a href="https://swasthai.netlify.app/voice" class="button">Enable Voice Chat</a>
+</section>
 
-    // Daily Tip
-    const tips = [
-        "Drink 8 glasses of water a day.",
-        "Walk at least 30 minutes daily.",
-        "Sleep 7-8 hours every night.",
-        "Eat fruits and vegetables daily.",
-        "Avoid excess sugar and junk food.",
-        "Stretch your body every morning.",
-        "Take deep breaths to reduce stress."
-    ];
-    document.getElementById("dailyTip").textContent = tips[new Date().getDate() % tips.length];
+<section>
+    <h2>🎁 Referral System</h2>
+    <p>Invite friends and earn rewards with your unique code.</p>
+    <a href="https://swasthai.netlify.app/referral" class="button">Share & Earn</a>
+</section>
 
-    // Hide Chat Button
-    document.getElementById("hideChat").onclick = function() {
-        var widget = document.getElementById("kommunicate-widget-iframe");
-        if (widget) {
-            widget.style.display = widget.style.display === "none" ? "block" : "none";
-            this.textContent = widget.style.display === "none" ? "Show Chat" : "Hide Chat";
-        }
-    };
-</script>
+<section>
+    <h2>❤️ “Feeling Lucky?”</h2>
+    <p>Click for a random health tip or motivational quote.</p>
+    <a href="https://swasthai.netlify.app/lucky" class="button">Feeling Lucky</a>
+</section>
+
+<section>
+    <h2>📅 Health Calendar</h2>
+    <p>Track your health habits and see tips day-by-day.</p>
+    <a href="https://swasthai.netlify.app/calendar" class="button">View Calendar</a>
+</section>
+
+<footer>
+    <p>&copy; 2025 SwasthAI | Built with ❤️ by You <br> 2025 स्वास्थAI | आपके द्वारा ❤️ के साथ बनाया गया</p>
+</footer>
 
 <!-- Kommunicate Script -->
 <script type="text/javascript">
@@ -228,11 +213,15 @@
         var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
         window.kommunicate = m; m._globals = kommunicateSettings;
     })(document, window.kommunicate || {});
-</script>
 
-<footer>
-    <p>&copy; 2025 SwasthAI | Built with ❤️ by You <br> 2025 स्वास्थAI | आपके द्वारा ❤️ के साथ बनाया गया</p>
-</footer>
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    function launchChat() {
+        Kommunicate.launchConversation();
+    }
+</script>
 
 </body>
 </html>
