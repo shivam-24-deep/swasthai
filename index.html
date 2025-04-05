@@ -93,10 +93,27 @@
             right: 15px !important;
             left: auto !important;
         }
+
+        #tawk-button {
+            position: fixed;
+            bottom: 60px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #00c853;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 28px;
+            cursor: move;
+            z-index: 9999;
+        }
     </style>
 </head>
 <body>
-
     <header>
         <h1>Welcome to SwasthAI / स्वागत है स्वास्थAI में</h1>
         <p>Your Free AI Health Assistant / आपका निःशुल्क एआई स्वास्थ्य सहायक</p>
@@ -121,6 +138,47 @@
         <p>Have feedback or questions? Email us at <b>swasthai@yourmail.com</b><br> कोई सुझाव या प्रश्न हैं? हमें इस ईमेल पर भेजें: <b>swasthai@yourmail.com</b></p>
     </section>
 
+    <!-- Tawk.to Live Chat Script -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/67f13b91374ed81909178624/1io351cj7';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+
+    <!-- Draggable Custom Button for Tawk.to -->
+    <div id="tawk-button" onclick="Tawk_API.maximize()">💬</div>
+    <script>
+        const tawkBtn = document.getElementById("tawk-button");
+        tawkBtn.onmousedown = function(event) {
+            let shiftX = event.clientX - tawkBtn.getBoundingClientRect().left;
+            let shiftY = event.clientY - tawkBtn.getBoundingClientRect().top;
+
+            function moveAt(pageX, pageY) {
+                tawkBtn.style.left = pageX - shiftX + 'px';
+                tawkBtn.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(event) {
+                moveAt(event.pageX, event.pageY);
+            }
+
+            document.addEventListener('mousemove', onMouseMove);
+            tawkBtn.onmouseup = function() {
+                document.removeEventListener('mousemove', onMouseMove);
+                tawkBtn.onmouseup = null;
+            };
+        };
+        tawkBtn.ondragstart = () => false;
+    </script>
+
+    <style>.tawk-min-container { display: none !important; }</style>
+
     <!-- Kommunicate AI Chatbot Script -->
     <script type="text/javascript">
         (function(d, m){
@@ -136,34 +194,8 @@
         })(document, window.kommunicate || {});
     </script>
 
-    <!-- Tawk.to Live Chat Script with Custom Position -->
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        Tawk_API.onLoad = function() {
-            var style = document.createElement("style");
-            style.innerHTML = `
-                #tawkchat-container {
-                    bottom: auto !important;
-                    top: 20px !important;
-                    right: 20px !important;
-                    z-index: 99999 !important;
-                }
-            `;
-            document.head.appendChild(style);
-        };
-        (function() {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/67f13b91374ed81909178624/1io351cj7';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-
     <footer>
         <p>&copy; 2025 SwasthAI | Built with ❤️ by You <br> 2025 स्वास्थAI | आपके द्वारा ❤️ के साथ बनाया गया</p>
     </footer>
-
 </body>
 </html>
