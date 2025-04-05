@@ -94,108 +94,148 @@
             left: auto !important;
         }
 
-        #tawk-button {
+        /* Tawk draggable chat */
+        #tawk-container {
             position: fixed;
-            bottom: 60px;
+            bottom: 80px;
             right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #00c853;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 28px;
-            cursor: move;
             z-index: 9999;
+            cursor: move;
+            background: transparent;
+        }
+
+        #hideTawk {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #showTawkBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #008080;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 16px;
+            font-size: 14px;
+            z-index: 9999;
+            display: none;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to SwasthAI / स्वागत है स्वास्थAI में</h1>
-        <p>Your Free AI Health Assistant / आपका निःशुल्क एआई स्वास्थ्य सहायक</p>
-    </header>
 
-    <section>
-        <h2>💬 AI Health Chatbot / एआई स्वास्थ्य चैटबॉट</h2>
-        <p>Click below to talk with our chatbot: <br> हमारे चैटबॉट से बात करने के लिए नीचे क्लिक करें:</p>
-        <a href="javascript:void(0);" class="button" onclick="Kommunicate.launchConversation();">
-            Start Chat / चैट शुरू करें
-        </a>
-    </section>
+<header>
+    <h1>Welcome to SwasthAI / स्वागत है स्वास्थAI में</h1>
+    <p>Your Free AI Health Assistant / आपका निःशुल्क एआई स्वास्थ्य सहायक</p>
+</header>
 
-    <section>
-        <h2>📋 Medicine Reminder / दवाई की याद दिलाने वाला फॉर्म</h2>
-        <p>Set a reminder using our simple form: <br> हमारे सरल फॉर्म से दवाई की याद सेट करें:</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1FInlQFUmD4z1-pRCg61UlGE4aGWcv_p2sr0gexyGPCRgGQ/viewform?usp=header" class="button" target="_blank">Open Form / फॉर्म खोलें</a>
-    </section>
+<section>
+    <h2>💬 AI Health Chatbot / एआई स्वास्थ्य चैटबॉट</h2>
+    <p>Click below to talk with our chatbot: <br> हमारे चैटबॉट से बात करने के लिए नीचे क्लिक करें:</p>
+    <a href="javascript:void(0);" class="button" onclick="Kommunicate.launchConversation();">
+        Start Chat / चैट शुरू करें
+    </a>
+</section>
 
-    <section>
-        <h2>📞 Contact Us / हमसे संपर्क करें</h2>
-        <p>Have feedback or questions? Email us at <b>swasthai@yourmail.com</b><br> कोई सुझाव या प्रश्न हैं? हमें इस ईमेल पर भेजें: <b>swasthai@yourmail.com</b></p>
-    </section>
+<section>
+    <h2>📋 Medicine Reminder / दवाई की याद दिलाने वाला फॉर्म</h2>
+    <p>Set a reminder using our simple form: <br> हमारे सरल फॉर्म से दवाई की याद सेट करें:</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1FInlQFUmD4z1-pRCg61UlGE4aGWcv_p2sr0gexyGPCRgGQ/viewform?usp=header" class="button" target="_blank">Open Form / फॉर्म खोलें</a>
+</section>
 
-    <!-- Tawk.to Live Chat Script -->
+<section>
+    <h2>📞 Contact Us / हमसे संपर्क करें</h2>
+    <p>Have feedback or questions? Email us at <b>swasthai@yourmail.com</b><br> कोई सुझाव या प्रश्न हैं? हमें इस ईमेल पर भेजें: <b>swasthai@yourmail.com</b></p>
+</section>
+
+<!-- Tawk.to Script (draggable and hide/show) -->
+<div id="tawk-container">
+    <button id="hideTawk">×</button>
     <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/67f13b91374ed81909178624/1io351cj7';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-    })();
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function(){
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/67f13b91374ed81909178624/1io351cj7';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
+</div>
 
-    <!-- Draggable Custom Button for Tawk.to -->
-    <div id="tawk-button" onclick="Tawk_API.maximize()">💬</div>
-    <script>
-        const tawkBtn = document.getElementById("tawk-button");
-        tawkBtn.onmousedown = function(event) {
-            let shiftX = event.clientX - tawkBtn.getBoundingClientRect().left;
-            let shiftY = event.clientY - tawkBtn.getBoundingClientRect().top;
+<button id="showTawkBtn">Show Chat</button>
 
-            function moveAt(pageX, pageY) {
-                tawkBtn.style.left = pageX - shiftX + 'px';
-                tawkBtn.style.top = pageY - shiftY + 'px';
-            }
+<script>
+    dragElement(document.getElementById("tawk-container"));
+    function dragElement(elmnt) {
+        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+        elmnt.onmousedown = dragMouseDown;
+        function dragMouseDown(e) {
+            e = e || window.event;
+            if (e.target.id === "hideTawk") return;
+            e.preventDefault();
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+        function closeDragElement() {
+            document.onmouseup = null;
+            document.onmousemove = null;
+        }
+    }
 
-            function onMouseMove(event) {
-                moveAt(event.pageX, event.pageY);
-            }
+    document.getElementById("hideTawk").onclick = function() {
+        document.getElementById("tawk-container").style.display = "none";
+        document.getElementById("showTawkBtn").style.display = "block";
+    };
 
-            document.addEventListener('mousemove', onMouseMove);
-            tawkBtn.onmouseup = function() {
-                document.removeEventListener('mousemove', onMouseMove);
-                tawkBtn.onmouseup = null;
-            };
+    document.getElementById("showTawkBtn").onclick = function() {
+        document.getElementById("tawk-container").style.display = "block";
+        document.getElementById("showTawkBtn").style.display = "none";
+    };
+</script>
+
+<!-- Kommunicate AI Chatbot Script -->
+<script type="text/javascript">
+    (function(d, m){
+        var kommunicateSettings = {
+            "appId": "14f1b5084fbedbb7258a9d155df38a82b",
+            "popupWidget": true,
+            "automaticChatOpenOnNavigation": true
         };
-        tawkBtn.ondragstart = () => false;
-    </script>
+        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+        window.kommunicate = m; m._globals = kommunicateSettings;
+    })(document, window.kommunicate || {});
+</script>
 
-    <style>.tawk-min-container { display: none !important; }</style>
+<footer>
+    <p>&copy; 2025 SwasthAI | Built with ❤️ by You <br> 2025 स्वास्थAI | आपके द्वारा ❤️ के साथ बनाया गया</p>
+</footer>
 
-    <!-- Kommunicate AI Chatbot Script -->
-    <script type="text/javascript">
-        (function(d, m){
-            var kommunicateSettings = {
-                "appId": "14f1b5084fbedbb7258a9d155df38a82b",
-                "popupWidget": true,
-                "automaticChatOpenOnNavigation": true
-            };
-            var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
-            s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-            var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
-            window.kommunicate = m; m._globals = kommunicateSettings;
-        })(document, window.kommunicate || {});
-    </script>
-
-    <footer>
-        <p>&copy; 2025 SwasthAI | Built with ❤️ by You <br> 2025 स्वास्थAI | आपके द्वारा ❤️ के साथ बनाया गया</p>
-    </footer>
 </body>
 </html>
