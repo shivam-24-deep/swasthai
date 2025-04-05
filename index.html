@@ -77,7 +77,6 @@
             border-top-right-radius: 20px;
         }
 
-        /* Mobile Responsive */
         @media (max-width: 600px) {
             header, section, footer {
                 padding: 15px;
@@ -90,11 +89,9 @@
             }
         }
 
-        /* Kommunicate Launcher Position */
-        .kommunicate-custom-launcher {
-            right: 20px !important;
+        .kommunicate-widget-launcher {
+            right: 15px !important;
             left: auto !important;
-            bottom: 90px !important;
         }
     </style>
 </head>
@@ -124,27 +121,13 @@
         <p>Have feedback or questions? Email us at <b>swasthai@yourmail.com</b><br> कोई सुझाव या प्रश्न हैं? हमें इस ईमेल पर भेजें: <b>swasthai@yourmail.com</b></p>
     </section>
 
-    <!-- Tawk.to Live Chat Script -->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/67f13b91374ed81909178624/1io351cj7';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-
     <!-- Kommunicate AI Chatbot Script -->
     <script type="text/javascript">
         (function(d, m){
             var kommunicateSettings = {
                 "appId": "14f1b5084fbedbb7258a9d155df38a82b",
                 "popupWidget": true,
-                "automaticChatOpenOnNavigation": true,
-                "customLauncherSelector": ".kommunicate-custom-launcher"
+                "automaticChatOpenOnNavigation": true
             };
             var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
             s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
@@ -153,8 +136,30 @@
         })(document, window.kommunicate || {});
     </script>
 
-    <!-- Custom floating launcher -->
-    <div class="kommunicate-custom-launcher" style="position:fixed;z-index:9999;"></div>
+    <!-- Tawk.to Live Chat Script with Custom Position -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        Tawk_API.onLoad = function() {
+            var style = document.createElement("style");
+            style.innerHTML = `
+                #tawkchat-container {
+                    bottom: auto !important;
+                    top: 20px !important;
+                    right: 20px !important;
+                    z-index: 99999 !important;
+                }
+            `;
+            document.head.appendChild(style);
+        };
+        (function() {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/67f13b91374ed81909178624/1io351cj7';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
 
     <footer>
         <p>&copy; 2025 SwasthAI | Built with ❤️ by You <br> 2025 स्वास्थAI | आपके द्वारा ❤️ के साथ बनाया गया</p>
