@@ -24,6 +24,12 @@
             padding: 0;
             background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
             color: #333;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background: #121212;
+            color: #eee;
         }
 
         header {
@@ -43,6 +49,10 @@
             border-radius: 15px;
             box-shadow: 0 6px 12px rgba(0,0,0,0.07);
             transition: transform 0.3s ease;
+        }
+
+        body.dark-mode section {
+            background: #1e1e1e;
         }
 
         section:hover {
@@ -131,6 +141,39 @@
             display: none;
         }
 
+        #darkToggle {
+            position: fixed;
+            top: 10px;
+            right: 15px;
+            z-index: 9999;
+            background: #008080;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        #dailyTip {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #444;
+        }
+
+        .help-float {
+            position: fixed;
+            bottom: 100px;
+            left: 15px;
+            background: #00bfa5;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 20px;
+            z-index: 9999;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
         /* Hide Kommunicate agent profile */
         .kommunicate-custom-iframe .km-chat-header,
         .kommunicate-custom-iframe .km-agent-profile {
@@ -139,6 +182,9 @@
     </style>
 </head>
 <body>
+
+<button id="darkToggle">Dark Mode</button>
+<div class="help-float" onclick="Kommunicate.launchConversation();">💬 Help?</div>
 
 <header>
     <h1>Welcome to SwasthAI / स्वागत है स्वास्थAI में</h1>
@@ -160,11 +206,16 @@
 </section>
 
 <section>
+    <h2>🧠 Daily Health Tip / दैनिक स्वास्थ्य सुझाव</h2>
+    <p id="dailyTip"></p>
+</section>
+
+<section>
     <h2>📞 Contact Us / हमसे संपर्क करें</h2>
     <p>Have feedback or questions? Email us at <b>swasthai@yourmail.com</b><br> कोई सुझाव या प्रश्न हैं? हमें इस ईमेल पर भेजें: <b>swasthai@yourmail.com</b></p>
 </section>
 
-<!-- Tawk.to Script (draggable and hide/show) -->
+<!-- Tawk.to Script -->
 <div id="tawk-container">
     <button id="hideTawk">×</button>
     <script type="text/javascript">
@@ -183,6 +234,7 @@
 <button id="showTawkBtn">Show Chat</button>
 
 <script>
+    // Drag + Show/Hide
     dragElement(document.getElementById("tawk-container"));
     function dragElement(elmnt) {
         var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -221,17 +273,34 @@
         document.getElementById("tawk-container").style.display = "block";
         document.getElementById("showTawkBtn").style.display = "none";
     };
+
+    // Dark Mode Toggle
+    document.getElementById("darkToggle").onclick = function() {
+        document.body.classList.toggle("dark-mode");
+        this.textContent = document.body.classList.contains("dark-mode") ? "Light Mode" : "Dark Mode";
+    };
+
+    // Health Tip List
+    const tips = [
+        "Drink 8 glasses of water a day.",
+        "Walk at least 30 minutes daily.",
+        "Sleep 7-8 hours every night.",
+        "Eat fruits and vegetables daily.",
+        "Avoid excess sugar and junk food.",
+        "Stretch your body every morning.",
+        "Take deep breaths to reduce stress."
+    ];
+    const todayTip = tips[new Date().getDate() % tips.length];
+    document.getElementById("dailyTip").textContent = todayTip;
 </script>
 
-<!-- Kommunicate AI Chatbot Script -->
+<!-- Kommunicate Script -->
 <script type="text/javascript">
     (function(d, m){
         var kommunicateSettings = {
             "appId": "14f1b5084fbedbb7258a9d155df38a82b",
             "popupWidget": true,
-            "automaticChatOpenOnNavigation": true,
-            "agentName": "",
-            "agentAvatar": ""
+            "automaticChatOpenOnNavigation": true
         };
         var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
         s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
