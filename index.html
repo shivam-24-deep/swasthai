@@ -5,6 +5,9 @@
     <title>SwasthAI - Your Health Buddy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
     <!-- Google Analytics Tag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MFWZC2CHP4"></script>
     <script>
@@ -16,10 +19,11 @@
 
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f4f4f4;
+            background: linear-gradient(to bottom right, #f0fdfa, #ccfbf1);
+            color: #333;
         }
 
         header {
@@ -27,26 +31,35 @@
             color: white;
             padding: 30px 20px;
             text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         section {
             padding: 20px;
-            margin: 10px;
+            margin: 15px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-3px);
         }
 
         .button {
             display: inline-block;
             background: #008080;
             color: white;
-            padding: 12px 24px;
+            padding: 14px 28px;
             margin-top: 10px;
             border: none;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 30px;
             font-size: 16px;
+            transition: background 0.3s;
         }
 
         .button:hover {
@@ -60,6 +73,8 @@
             padding: 15px 10px;
             font-size: 14px;
             margin-top: 20px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
         }
 
         /* Mobile Responsive */
@@ -86,9 +101,9 @@
     <section>
         <h2>💬 AI Health Chatbot</h2>
         <p>Click below to talk with our chatbot:</p>
-        <button class="button" onclick="Kommunicate && Kommunicate.launchConversation();">Start Chat</button>
+        <a href="#" class="button">Start Chat</a>
     </section>
-    
+
     <section>
         <h2>📋 Medicine Reminder</h2>
         <p>Set a reminder using our simple form:</p>
@@ -113,21 +128,20 @@
     })();
     </script>
 
- <!-- Kommunicate AI Chatbot Script -->
-<script type="text/javascript">
-    (function(d, m){
-        var kommunicateSettings = {
-            "appId": "14f1b5084fbedbb7258a9d155df38a82b", // ✅ Your App ID
-            "popupWidget": true,
-            "automaticChatOpenOnNavigation": true
-        };
-        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
-        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
-        window.kommunicate = m; m._globals = kommunicateSettings;
-    })(document, window.kommunicate || {});
-</script>
-
+    <!-- Kommunicate AI Chatbot Script -->
+    <script type="text/javascript">
+        (function(d, m){
+            var kommunicateSettings = {
+                "appId": "14f1b5084fbedbb7258a9d155df38a82b",
+                "popupWidget": true,
+                "automaticChatOpenOnNavigation": true
+            };
+            var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+            s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+            var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+            window.kommunicate = m; m._globals = kommunicateSettings;
+        })(document, window.kommunicate || {});
+    </script>
 
     <footer>
         <p>&copy; 2025 SwasthAI | Built with ❤️ by You</p>
