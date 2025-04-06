@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voice Chat Input</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #e3f2fd;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #output {
+      width: 90%;
+      max-width: 500px;
+      height: 100px;
+      font-size: 18px;
+      padding: 10px;
+      margin: 10px auto;
+      border-radius: 10px;
+      border: 2px solid #90caf9;
+      resize: none;
+    }
+
+    #micBtn {
+      background: #42a5f5;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    #micBtn:hover {
+      background: #1e88e5;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🗣️ Speak to Chat</h1>
+<p>Tap the mic and start speaking. Your words will appear below:</p>
+
+<textarea id="output" placeholder="Your voice will appear here..."></textarea><br>
+<button id="micBtn">🎤 Start Listening</button>
+
+<script>
+  const output = document.getElementById("output");
+  const micBtn = document.getElementById("micBtn");
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (!SpeechRecognition) {
+    alert("Sorry, your browser does not support voice recognition.");
+  } else {
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = "en-IN";
+
+    micBtn.addEventListener("click", () => {
+      recognition.start();
+      micBtn.textContent = "🎙️ Listening...";
+    });
+
+    recognition.onresult = (event) => {
+      const speechResult = event.results[0][0].transcript;
+      output.value = speechResult;
+      micBtn.textContent = "🎤 Start Listening";
+    };
+
+    recognition.onerror = (event) => {
+      micBtn.textContent = "🎤 Start Listening";
+      alert("Voice error: " + event.error);
+    };
+
+    recognition.onend = () => {
+      micBtn.textContent = "🎤 Start Listening";
+    };
+  }
+</script>
+
+</body>
+</html>
