@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>Nearby Clinics - SwasthAI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       background: #f0f9ff;
@@ -27,13 +27,25 @@
       width: 100%;
     }
 
+    #search-container {
+      text-align: center;
+      margin: 15px;
+    }
+
+    #search {
+      width: 80%;
+      padding: 10px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
     footer {
       background: #222;
       color: #aaa;
       text-align: center;
       padding: 15px;
       font-size: 14px;
-      margin-top: 10px;
     }
   </style>
 </head>
@@ -44,70 +56,102 @@
   <p>Find clinics around your current location</p>
 </header>
 
+<div id="search-container">
+  <input id="search" type="text" placeholder="Search clinic, hospital, doctor...">
+</div>
+
 <div id="map"></div>
 
 <footer>
   <p>&copy; 2025 SwasthAI | Built with ❤️ by You</p>
 </footer>
 
-<!-- Google Maps & Geolocation Script -->
 <script>
+  let map;
+  let service;
+  let infowindow;
+  let markers = [];
+
   function initMap() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        const userLat = position.coords.latitude;
-        const userLng = position.coords.longitude;
-        const userLocation = { lat: userLat, lng: userLng };
+      navigator.geolocation.getCurrentPosition(position => {
+        const userLocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
 
-        const map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: userLocation
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: userLocation,
+          zoom: 15
         });
 
-        const marker = new google.maps.Marker({
+        const userMarker = new google.maps.Marker({
           position: userLocation,
           map: map,
-          title: 'You are here',
-          icon: {
-            url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+          title: "You are here",
+          icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+        });
+
+        const userInfo = new google.maps.InfoWindow({
+          content: "You are here"
+        });
+        userInfo.open(map, userMarker);
+
+        infowindow = new google.maps.InfoWindow();
+
+        // Initial search for clinics nearby
+        searchPlaces("clinic");
+
+        // When user types something
+        document.getElementById("search").addEventListener("input", (e) => {
+          const query = e.target.value.trim();
+          if (query.length > 2) {
+            searchPlaces(query);
           }
         });
 
-        const infoWindow = new google.maps.InfoWindow();
-
-        const geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ location: userLocation }, (results, status) => {
-          if (status === "OK") {
-            if (results[0]) {
-              const address = results[0].formatted_address;
-              infoWindow.setContent(`<strong>You are here:</strong><br>${address}`);
-              infoWindow.open(map, marker);
-
-              marker.addListener("click", () => {
-                infoWindow.open(map, marker);
-              });
-            } else {
-              infoWindow.setContent("Location found, but address not available.");
-              infoWindow.open(map, marker);
-            }
-          } else {
-            infoWindow.setContent("Geocoder failed: " + status);
-            infoWindow.open(map, marker);
-          }
-        });
-
-      }, function() {
-        alert("Unable to get your location.");
+      }, () => {
+        alert("Location access denied.");
       });
     } else {
-      alert("Geolocation not supported by your browser.");
+      alert("Geolocation not supported by this browser.");
     }
+  }
+
+  function searchPlaces(query) {
+    // Clear previous markers
+    markers.forEach(marker => marker.setMap(null));
+    markers = [];
+
+    const request = {
+      location: map.getCenter(),
+      radius: '2000',
+      keyword: query
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, (results, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        results.forEach(place => {
+          const marker = new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+          });
+          markers.push(marker);
+
+          google.maps.event.addListener(marker, "click", () => {
+            infowindow.setContent(`<strong>${place.name}</strong><br>${place.vicinity}`);
+            infowindow.open(map, marker);
+          });
+        });
+      }
+    });
   }
 </script>
 
-<!-- Replace "YOUR_API_KEY" below -->
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQlJvbdO-nJov7fEr3cY9LZzRJKcf6-kI&callback=initMap">
+<!-- Load Google Maps JavaScript API with Places Library -->
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
 </script>
 
 </body>
