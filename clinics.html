@@ -1,91 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Nearby Clinics</title>
+  <meta charset="UTF-8">
+  <title>Nearby Clinics - SwasthAI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
+      padding: 0;
+      background: #f0f9ff;
     }
-    h1 {
-      text-align: center;
-      background: #008080;
+
+    header {
+      background-color: #008080;
       color: white;
-      padding: 20px;
+      padding: 25px;
+      text-align: center;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
     }
+
     #map {
       height: 80vh;
       width: 100%;
     }
-    #status {
+
+    footer {
+      background: #222;
+      color: #aaa;
       text-align: center;
-      padding: 10px;
+      padding: 15px;
+      font-size: 14px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>📍 Nearby Clinics</h1>
-  <p id="status">Getting your location...</p>
-  <div id="map"></div>
 
-  <script>
-    let map;
+<header>
+  <h1>Nearby Clinics</h1>
+  <p>Find clinics around your current location</p>
+</header>
 
-    function initMap() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const userLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
+<div id="map"></div>
 
-          map = new google.maps.Map(document.getElementById('map'), {
-            center: userLocation,
-            zoom: 14
-          });
+<footer>
+  <p>&copy; 2025 SwasthAI | Built with ❤️ by You</p>
+</footer>
 
-          new google.maps.Marker({
-            position: userLocation,
-            map: map,
-            title: 'You are here'
-          });
+<!-- Google Maps & Geolocation Script -->
+<script>
+  function initMap() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const userLat = position.coords.latitude;
+        const userLng = position.coords.longitude;
+        const userLocation = { lat: userLat, lng: userLng };
 
-          const request = {
-            location: userLocation,
-            radius: 3000,
-            keyword: 'clinic'
-          };
-
-          const service = new google.maps.places.PlacesService(map);
-          service.nearbySearch(request, (results, status) => {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-              for (let i = 0; i < results.length; i++) {
-                const place = results[i];
-                new google.maps.Marker({
-                  position: place.geometry.location,
-                  map: map,
-                  title: place.name
-                });
-              }
-              document.getElementById("status").textContent = "Nearby clinics shown below:";
-            } else {
-              document.getElementById("status").textContent = "Could not fetch clinics.";
-            }
-          });
-
-        }, () => {
-          document.getElementById("status").textContent = "Permission denied or location error.";
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: userLocation
         });
-      } else {
-        document.getElementById("status").textContent = "Geolocation not supported.";
-      }
-    }
-  </script>
 
-  <!-- ✅ IMPORTANT: Replace this with your actual API key -->
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQlJvbdO-nJov7fEr3cY9LZzRJKcf6-kI&libraries=places&callback=initMap">
-  </script>
+        const marker = new google.maps.Marker({
+          position: userLocation,
+          map: map,
+          title: 'You are here',
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+          }
+        });
+
+        const infoWindow = new google.maps.InfoWindow();
+
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ location: userLocation }, (results, status) => {
+          if (status === "OK") {
+            if (results[0]) {
+              const address = results[0].formatted_address;
+              infoWindow.setContent(`<strong>You are here:</strong><br>${address}`);
+              infoWindow.open(map, marker);
+
+              marker.addListener("click", () => {
+                infoWindow.open(map, marker);
+              });
+            } else {
+              infoWindow.setContent("Location found, but address not available.");
+              infoWindow.open(map, marker);
+            }
+          } else {
+            infoWindow.setContent("Geocoder failed: " + status);
+            infoWindow.open(map, marker);
+          }
+        });
+
+      }, function() {
+        alert("Unable to get your location.");
+      });
+    } else {
+      alert("Geolocation not supported by your browser.");
+    }
+  }
+</script>
+
+<!-- Replace "YOUR_API_KEY" below -->
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQlJvbdO-nJov7fEr3cY9LZzRJKcf6-kI&callback=initMap">
+</script>
+
 </body>
 </html>
