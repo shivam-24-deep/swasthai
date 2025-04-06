@@ -1,101 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Feeling Lucky?</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Health Tips - SwasthAI</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fdf6e3;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    #map {
+      height: 60vh;
+      width: 100vw;
+    }
+    #search-box {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 400px;
+    }
+    #health-tips {
       padding: 20px;
+      background-color: #f9f9f9;
     }
-    h1 {
-      color: #d35400;
-    }
-    #tip {
-      font-size: 1.5rem;
-      margin: 20px 0;
+    #health-tips h2 {
       text-align: center;
+      margin-bottom: 20px;
+    }
+    .tip {
+      background: #fff;
+      padding: 15px;
+      margin: 10px auto;
       max-width: 600px;
-    }
-    button {
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #d35400;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background-color: #b84300;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
+  <input id="search-box" type="text" placeholder="Search for hospitals, clinics, or medical stores..." />
+  <div id="map"></div>
 
-  <h1>❤️ Feeling Lucky?</h1>
-  <div id="tip">Click the button to get a health tip or quote!</div>
-  <button onclick="showRandomTip()">I'm Feeling Lucky</button>
+  <div id="health-tips">
+    <h2>Health Tips / स्वास्थ्य सुझाव</h2>
+    <div id="tips-list"></div>
+  </div>
 
   <script>
     const tips = [
-  "Drink plenty of water daily 💧 / रोज़ाना भरपूर पानी पिएं",
-  "Take a 10-minute walk after meals 🚶‍♂️ / खाने के बाद 10 मिनट टहलिए",
-  "Smile – it's good for your heart 😊 / मुस्कुराइए – ये दिल के लिए अच्छा है",
-  "Don’t skip breakfast – fuel your day 🥣 / नाश्ता न छोड़ें – ये दिन की ऊर्जा है",
-  "Sleep at least 7-8 hours a night 💤 / रात में कम से कम 7-8 घंटे की नींद लें",
-  "Stretch your body daily 🧘 / रोज़ाना शरीर को स्ट्रेच करें",
-  "Be kind to yourself and others 🤗 / खुद से और दूसरों से दयालु रहें",
-  "Eat more fruits and veggies 🥦🍎 / अधिक फल और सब्ज़ियां खाएं",
-  "Stay off screens 30 mins before bed 📵 / सोने से 30 मिनट पहले स्क्रीन से दूर रहें",
-  "Practice deep breathing to relax 🌬️ / तनाव दूर करने के लिए गहरी सांस लें",
-  "Limit sugar intake 🍬 / चीनी का सेवन कम करें",
-  "Wash your hands regularly ✋ / हाथों को नियमित रूप से धोएं",
-  "Meditate for a few minutes daily 🧘‍♂️ / रोज़ कुछ मिनट ध्यान करें",
-  "Don't smoke 🚭 / धूम्रपान न करें",
-  "Get some sunlight every day ☀️ / हर दिन थोड़ी धूप लें",
-  "Limit junk food 🍟 / जंक फूड सीमित करें",
-  "Eat home-cooked meals 🥘 / घर का खाना खाएं",
-  "Stay socially connected 📞 / सामाजिक रूप से जुड़े रहें",
-  "Check your posture often 🪑 / अपने बैठने के तरीके पर ध्यान दें",
-  "Get regular health check-ups 🩺 / नियमित स्वास्थ्य जांच कराएं",
-  "Practice gratitude daily 🙏 / रोज़ आभार प्रकट करें",
-  "Laugh often 😂 / खूब हँसिए",
-  "Take breaks during work 💻 / काम के दौरान ब्रेक लें",
-  "Avoid overthinking 🤯 / ज़्यादा सोचने से बचें",
-  "Keep your surroundings clean 🧹 / अपने आस-पास की सफ़ाई रखें",
-  "Chew food slowly 🍽️ / भोजन धीरे-धीरे चबाकर खाएं",
-  "Avoid excessive salt 🧂 / ज़्यादा नमक से बचें",
-  "Use stairs instead of elevator 🏃‍♂️ / लिफ्ट की बजाय सीढ़ियों का प्रयोग करें",
-  "Listen to calming music 🎵 / शांतिपूर्ण संगीत सुनें",
-  "Use natural remedies when possible 🌿 / संभव हो तो प्राकृतिक उपाय अपनाएं",
-  "Avoid overeating 🍛 / अधिक खाने से बचें",
-  "Keep a regular sleep schedule ⏰ / नियमित नींद का समय रखें",
-  "Drink herbal tea occasionally 🍵 / कभी-कभी हर्बल चाय पिएं",
-  "Stay positive ☀️ / सकारात्मक रहें",
-  "Protect your eyes from screens 👀 / स्क्रीन से आंखों को बचाएं",
-  "Keep emergency numbers handy 📱 / ज़रूरी नंबर पास रखें",
-  "Avoid stress by organizing your day 🗓️ / दिन को व्यवस्थित करके तनाव दूर करें",
-  "Read a book instead of scrolling 📚 / स्क्रॉलिंग की जगह किताब पढ़ें",
-  "Maintain good hygiene 🧼 / अच्छी स्वच्छता बनाए रखें",
-  "Limit caffeine intake ☕ / कैफीन का सेवन सीमित करें"
-];
+      "Drink plenty of water daily 💧 / रोज़ाना भरपूर पानी पिएं",
+      "Take a 10-minute walk after meals 🚶‍♂️ / खाने के बाद 10 मिनट टहलिए",
+      "Smile – it's good for your heart 😊 / मुस्कुराइए – ये दिल के लिए अच्छा है",
+      "Don’t skip breakfast – fuel your day 🥣 / नाश्ता न छोड़ें – ये दिन की ऊर्जा है",
+      "Sleep at least 7-8 hours a night 💤 / रात में कम से कम 7-8 घंटे की नींद लें",
+      "Stretch your body daily 🧘 / रोज़ाना शरीर को स्ट्रेच करें",
+      "Be kind to yourself and others 🤗 / खुद से और दूसरों से दयालु रहें",
+      "Eat more fruits and veggies 🥦🍎 / अधिक फल और सब्ज़ियां खाएं",
+      "Stay off screens 30 mins before bed 📵 / सोने से 30 मिनट पहले स्क्रीन से दूर रहें",
+      "Practice deep breathing to relax 🌬️ / तनाव दूर करने के लिए गहरी सांस लें",
+      "Limit sugar intake 🍬 / चीनी का सेवन कम करें",
+      "Wash your hands regularly ✋ / हाथों को नियमित रूप से धोएं",
+      "Meditate for a few minutes daily 🧘‍♂️ / रोज़ कुछ मिनट ध्यान करें",
+      "Don't smoke 🚭 / धूम्रपान न करें",
+      "Get some sunlight every day ☀️ / हर दिन थोड़ी धूप लें",
+      "Limit junk food 🍟 / जंक फूड सीमित करें",
+      "Eat home-cooked meals 🥘 / घर का खाना खाएं",
+      "Stay socially connected 📞 / सामाजिक रूप से जुड़े रहें",
+      "Check your posture often 🪑 / अपने बैठने के तरीके पर ध्यान दें",
+      "Get regular health check-ups 🩺 / नियमित स्वास्थ्य जांच कराएं",
+      "Practice gratitude daily 🙏 / रोज़ आभार प्रकट करें",
+      "Laugh often 😂 / खूब हँसिए",
+      "Take breaks during work 💻 / काम के दौरान ब्रेक लें",
+      "Avoid overthinking 🤯 / ज़्यादा सोचने से बचें",
+      "Keep your surroundings clean 🧹 / अपने आस-पास की सफ़ाई रखें",
+      "Chew food slowly 🍽️ / भोजन धीरे-धीरे चबाकर खाएं",
+      "Avoid excessive salt 🧂 / ज़्यादा नमक से बचें",
+      "Use stairs instead of elevator 🏃‍♂️ / लिफ्ट की बजाय सीढ़ियों का प्रयोग करें",
+      "Listen to calming music 🎵 / शांतिपूर्ण संगीत सुनें",
+      "Use natural remedies when possible 🌿 / संभव हो तो प्राकृतिक उपाय अपनाएं",
+      "Avoid overeating 🍛 / अधिक खाने से बचें",
+      "Keep a regular sleep schedule ⏰ / नियमित नींद का समय रखें",
+      "Drink herbal tea occasionally 🍵 / कभी-कभी हर्बल चाय पिएं",
+      "Stay positive ☀️ / सकारात्मक रहें",
+      "Protect your eyes from screens 👀 / स्क्रीन से आंखों को बचाएं",
+      "Keep emergency numbers handy 📱 / ज़रूरी नंबर पास रखें",
+      "Avoid stress by organizing your day 🗓️ / दिन को व्यवस्थित करके तनाव दूर करें",
+      "Read a book instead of scrolling 📚 / स्क्रॉलिंग की जगह किताब पढ़ें",
+      "Maintain good hygiene 🧼 / अच्छी स्वच्छता बनाए रखें",
+      "Limit caffeine intake ☕ / कैफीन का सेवन सीमित करें"
+    ];
 
-
-    function showRandomTip() {
-      const random = Math.floor(Math.random() * tips.length);
-      document.getElementById('tip').textContent = tips[random];
-    }
+    const tipsList = document.getElementById("tips-list");
+    tips.forEach(tip => {
+      const div = document.createElement("div");
+      div.className = "tip";
+      div.innerText = tip;
+      tipsList.appendChild(div);
+    });
   </script>
-
 </body>
 </html>
