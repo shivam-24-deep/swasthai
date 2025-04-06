@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Checklist Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #008080;
+    }
+    label {
+      display: block;
+      margin: 15px 0;
+      font-size: 18px;
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #008080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #006666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Health Checklist Tool</h1>
+    <label><input type="checkbox" id="water"> Drink 8 Glasses of Water</label>
+    <label><input type="checkbox" id="breakfast"> Eat Breakfast</label>
+    <label><input type="checkbox" id="lunch"> Eat Lunch</label>
+    <label><input type="checkbox" id="dinner"> Eat Dinner</label>
+    <label><input type="checkbox" id="exercise"> Exercise</label>
+
+    <button onclick="saveChecklist()">Save Checklist</button>
+  </div>
+
+  <script>
+    // Load saved state
+    window.onload = function () {
+      ["water", "breakfast", "lunch", "dinner", "exercise"].forEach(id => {
+        const saved = localStorage.getItem("checklist-" + id);
+        if (saved === "true") {
+          document.getElementById(id).checked = true;
+        }
+      });
+    };
+
+    function saveChecklist() {
+      ["water", "breakfast", "lunch", "dinner", "exercise"].forEach(id => {
+        const checked = document.getElementById(id).checked;
+        localStorage.setItem("checklist-" + id, checked);
+      });
+      alert("Checklist saved!");
+    }
+  </script>
+</body>
+</html>
