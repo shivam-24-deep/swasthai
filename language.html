@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Language Switcher</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #eef7f6;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #00695c;
+    }
+    .lang-button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #009688;
+      color: white;
+    }
+    .lang-button:hover {
+      background-color: #00796b;
+    }
+    #content {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌐 Language Switcher</h1>
+  <button class="lang-button" onclick="setLanguage('en')">English</button>
+  <button class="lang-button" onclick="setLanguage('hi')">हिंदी</button>
+
+  <div id="content"></div>
+
+  <script>
+    const translations = {
+      en: {
+        title: "Welcome to SwasthAI!",
+        message: "Your friendly health assistant. Choose a feature from the menu."
+      },
+      hi: {
+        title: "स्वस्थAI में आपका स्वागत है!",
+        message: "आपका दोस्ताना स्वास्थ्य सहायक। मेनू से एक फ़ीचर चुनें।"
+      }
+    };
+
+    function setLanguage(lang) {
+      const { title, message } = translations[lang];
+      document.getElementById("content").innerHTML = `
+        <h2>${title}</h2>
+        <p>${message}</p>
+      `;
+    }
+
+    // Set default language
+    setLanguage('en');
+  </script>
+
+</body>
+</html>
