@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feeling Lucky?</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf6e3;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    h1 {
+      color: #d35400;
+    }
+    #tip {
+      font-size: 1.5rem;
+      margin: 20px 0;
+      text-align: center;
+      max-width: 600px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #d35400;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #b84300;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>❤️ Feeling Lucky?</h1>
+  <div id="tip">Click the button to get a health tip or quote!</div>
+  <button onclick="showRandomTip()">I'm Feeling Lucky</button>
+
+  <script>
+    const tips = [
+      "Drink plenty of water daily 💧",
+      "Take a 10-minute walk after meals 🚶‍♂️",
+      "Smile – it's good for your heart 😊",
+      "Don’t skip breakfast – fuel your day 🥣",
+      "Sleep at least 7-8 hours a night 💤",
+      "Stretch your body daily 🧘",
+      "Be kind to yourself and others 🤗",
+      "Eat more fruits and veggies 🥦🍎",
+      "Stay off screens 30 mins before bed 📵",
+      "Practice deep breathing to relax 🌬️"
+    ];
+
+    function showRandomTip() {
+      const random = Math.floor(Math.random() * tips.length);
+      document.getElementById('tip').textContent = tips[random];
+    }
+  </script>
+
+</body>
+</html>
