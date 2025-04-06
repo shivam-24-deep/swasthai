@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nearby Clinics | SwasthAI</title>
+  <title>Nearby Clinics - SwasthAI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     html, body {
       height: 100%;
@@ -11,117 +10,144 @@
       font-family: Arial, sans-serif;
     }
     #map {
-      height: 100vh;
+      height: 100%;
       width: 100%;
     }
-    #search-input {
+    #searchInput {
       position: absolute;
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 5;
-      width: 90%;
-      max-width: 400px;
+      z-index: 999;
+      width: 80%;
       padding: 10px;
-      border-radius: 25px;
+      font-size: 16px;
       border: 1px solid #ccc;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-    @media (max-width: 600px) {
-      #search-input {
-        top: 5px;
-        width: 95%;
-      }
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <input id="search-input" type="text" placeholder="Search for hospital, clinic, etc..." />
+  <input id="searchInput" type="text" placeholder="Search for clinic, hospital, medical store..." />
   <div id="map"></div>
 
   <script>
-    let map, userMarker, infoWindow, directionsService, directionsRenderer;
+    let map, service, userMarker, directionsRenderer, directionsService;
 
     function initMap() {
       map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 0, lng: 0 },
         zoom: 15,
+        mapTypeControl: false
       });
-      infoWindow = new google.maps.InfoWindow();
+
+      directionsRenderer = new google.maps.DirectionsRenderer({ suppressMarkers: true });
       directionsService = new google.maps.DirectionsService();
-      directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
+      directionsRenderer.setMap(map);
 
-      // Search box
-      const input = document.getElementById("search-input");
+      const input = document.getElementById("searchInput");
       const searchBox = new google.maps.places.SearchBox(input);
-      map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
 
-      // Get current location
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          const pos = {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          map.setCenter(pos);
+
+          map.setCenter(userLocation);
           userMarker = new google.maps.Marker({
-            position: pos,
-            map,
-            icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+            position: userLocation,
+            map: map,
             title: "You are here",
+            icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
           });
 
-          findNearbyPlaces(pos);
-        });
-      }
+          showNearbyPlaces(userLocation, "hospital");
+          showNearbyPlaces(userLocation, "clinic");
+          showNearbyPlaces(userLocation, "pharmacy");
 
-      // Handle search
-      searchBox.addListener("places_changed", () => {
-        const places = searchBox.getPlaces();
-        if (places.length == 0) return;
-        map.setCenter(places[0].geometry.location);
-        findNearbyPlaces(places[0].geometry.location);
+          searchBox.addListener("places_changed", () => {
+            const places = searchBox.getPlaces();
+            if (!places.length) return;
+
+            const place = places[0];
+            if (!place.geometry || !place.geometry.location) return;
+
+            map.panTo(place.geometry.location);
+            map.setZoom(15);
+            showNearbyPlaces(place.geometry.location, place.name);
+          });
+
+        },
+        () => {
+          alert("Please allow location access for map features.");
+        }
+      );
+    }
+
+    function showNearbyPlaces(location, keyword) {
+      service = new google.maps.places.PlacesService(map);
+      service.nearbySearch({
+        location: location,
+        radius: 5000,
+        keyword: keyword
+      }, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          results.forEach(place => createMarker(place, location));
+        }
       });
     }
 
-    function findNearbyPlaces(location) {
-      const service = new google.maps.places.PlacesService(map);
-      const request = {
-        location: location,
-        radius: 5000,
-        type: ["hospital"]
-      };
-      service.nearbySearch(request, (results, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          results.forEach((place) => {
-            const marker = new google.maps.Marker({
-              map,
-              position: place.geometry.location,
-              title: place.name,
-            });
+    function createMarker(place, origin) {
+      const marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location,
+        title: place.name,
+      });
 
-            marker.addListener("click", () => {
-              service.getDetails({ placeId: place.place_id }, (details, status) => {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                  let content = `
-                    <strong>${details.name}</strong><br>
-                    ${details.formatted_address || "Address not available"}<br>
-                    ${details.formatted_phone_number || ""}<br>
-                    ${details.opening_hours?.weekday_text?.join('<br>') || ""}<br>
-                    <a href="https://www.google.com/maps/dir/?api=1&origin=${userMarker.getPosition().lat()},${userMarker.getPosition().lng()}&destination=${details.geometry.location.lat()},${details.geometry.location.lng()}&travelmode=driving" target="_blank">Get Directions</a>
-                  `;
-                  infoWindow.setContent(content);
-                  infoWindow.open(map, marker);
-                  map.panTo(details.geometry.location);
-                }
-              });
-            });
-          });
+      const infowindow = new google.maps.InfoWindow();
+
+      marker.addListener("click", () => {
+        const request = {
+          placeId: place.place_id,
+          fields: ["name", "formatted_address", "rating", "opening_hours", "photos", "geometry"],
+        };
+
+        service.getDetails(request, (details, status) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK && details) {
+            let content = `
+              <strong>${details.name}</strong><br>
+              ${details.formatted_address}<br>
+              Rating: ${details.rating || "N/A"}<br>
+              ${details.opening_hours?.isOpen() ? "Open now" : "Closed now"}<br><br>
+              <button onclick="getDirections(${origin.lat}, ${origin.lng}, ${details.geometry.location.lat()}, ${details.geometry.location.lng()})">Get Directions</button>
+              <br><br>
+              ${details.photos ? `<img src="${details.photos[0].getUrl()}" width="200">` : ""}
+            `;
+            infowindow.setContent(content);
+            infowindow.open(map, marker);
+          }
+        });
+      });
+    }
+
+    function getDirections(startLat, startLng, destLat, destLng) {
+      const mode = prompt("Enter travel mode: driving, walking, bicycling, or transit", "driving");
+      directionsService.route({
+        origin: { lat: startLat, lng: startLng },
+        destination: { lat: destLat, lng: destLng },
+        travelMode: google.maps.TravelMode[mode.toUpperCase()]
+      }, (result, status) => {
+        if (status === "OK") {
+          directionsRenderer.setDirections(result);
+        } else {
+          alert("Directions request failed: " + status);
         }
       });
     }
   </script>
 
+  <!-- Replace YOUR_API_KEY with your actual key -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQlJvbdO-nJov7fEr3cY9LZzRJKcf6-kI&libraries=places&callback=initMap" async defer></script>
 </body>
 </html>
