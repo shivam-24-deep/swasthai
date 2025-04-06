@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Referral System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+    h1 {
+      text-align: center;
+      color: #008080;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #008080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #006666;
+    }
+    .note {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎁 Referral System</h1>
+  <div class="container">
+    <p>Your Referral Code:</p>
+    <input type="text" id="myCode" readonly>
+    <button onclick="copyCode()">Copy Code</button>
+
+    <p class="note">Share this code with friends. If they enter it below, you both get rewards!</p>
+
+    <p>Enter Friend's Code:</p>
+    <input type="text" id="friendCode" placeholder="Enter referral code">
+    <button onclick="submitFriendCode()">Submit</button>
+
+    <p id="message" class="note"></p>
+  </div>
+
+  <script>
+    // Generate a basic referral code based on random string or store from localStorage
+    let code = localStorage.getItem("referralCode") || ("REF" + Math.random().toString(36).substr(2, 6).toUpperCase());
+    localStorage.setItem("referralCode", code);
+    document.getElementById("myCode").value = code;
+
+    function copyCode() {
+      const codeInput = document.getElementById("myCode");
+      codeInput.select();
+      document.execCommand("copy");
+      alert("Referral code copied!");
+    }
+
+    function submitFriendCode() {
+      const entered = document.getElementById("friendCode").value.trim();
+      const message = document.getElementById("message");
+      if (entered.length > 0 && entered !== code) {
+        localStorage.setItem("usedReferralCode", entered);
+        message.textContent = "✅ Code submitted! Thanks for referring a friend.";
+      } else {
+        message.textContent = "❌ Invalid or duplicate code.";
+      }
+    }
+  </script>
+</body>
+</html>
