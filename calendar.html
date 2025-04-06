@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Health Calendar</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 20px;
+      background: #f0fdf4;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    .day {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .day.healthy {
+      background: #a5d6a7;
+    }
+
+    .day.missed {
+      background: #ef9a9a;
+    }
+
+    .day:hover {
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+<h1>📅 Health Calendar</h1>
+<div id="calendar"></div>
+
+<script>
+  const calendar = document.getElementById("calendar");
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  function getStatus(day) {
+    return localStorage.getItem(`health-${year}-${month}-${day}`) || "";
+  }
+
+  function setStatus(day, status) {
+    localStorage.setItem(`health-${year}-${month}-${day}`, status);
+  }
+
+  function createCalendar() {
+    for (let i = 1; i <= daysInMonth; i++) {
+      const dayBox = document.createElement("div");
+      dayBox.className = "day";
+      dayBox.textContent = i;
+
+      const status = getStatus(i);
+      if (status === "healthy") dayBox.classList.add("healthy");
+      else if (status === "missed") dayBox.classList.add("missed");
+
+      dayBox.addEventListener("click", () => {
+        if (dayBox.classList.contains("healthy")) {
+          dayBox.classList.remove("healthy");
+          dayBox.classList.add("missed");
+          setStatus(i, "missed");
+        } else if (dayBox.classList.contains("missed")) {
+          dayBox.classList.remove("missed");
+          setStatus(i, "");
+        } else {
+          dayBox.classList.add("healthy");
+          setStatus(i, "healthy");
+        }
+      });
+
+      calendar.appendChild(dayBox);
+    }
+  }
+
+  createCalendar();
+</script>
+
+</body>
+</html>
