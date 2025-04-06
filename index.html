@@ -48,7 +48,7 @@
             background: white;
             border-radius: 15px;
             box-shadow: 0 6px 12px rgba(0,0,0,0.07);
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition: transform 0.3s ease;
         }
 
         body.dark-mode section {
@@ -99,43 +99,43 @@
             }
         }
 
+        .kommunicate-widget-launcher {
+            right: 15px !important;
+            left: auto !important;
+        }
+
         #darkToggle {
             position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 999;
+            top: 10px;
+            right: 15px;
+            z-index: 9999;
             background: #008080;
             color: white;
             border: none;
-            border-radius: 30px;
-            padding: 10px 20px;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 14px;
             cursor: pointer;
         }
 
-        #chatButton {
+        .help-float {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #00c853;
+            bottom: 100px;
+            left: 15px;
+            background: #00bfa5;
             color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 20px;
+            z-index: 9999;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            z-index: 1000;
         }
     </style>
 </head>
 <body>
 
 <button id="darkToggle" onclick="toggleDarkMode()">Dark</button>
-<button id="chatButton" onclick="launchChat()" title="Chat with AI Health Assistant">💬</button>
+<div class="help-float" onclick="Kommunicate.launchConversation();">💬 Help?</div>
 
 <header>
     <h1>Welcome to SwasthAI / स्वागत है स्वास्थAI में</h1>
@@ -143,57 +143,57 @@
 </header>
 
 <section>
-    <h2>✅ Health Checklist Tool</h2>
-    <p>Track daily water, meals, and exercise.</p>
-    <a href="https://swasthai.netlify.app/checklist" class="button">Open Checklist</a>
+    <h2>📍 Nearby Clinics</h2>
+    <p>Find clinics near your location.</p>
+    <a href="clinics.html" class="button">Find Clinics</a>
 </section>
 
 <section>
-    <h2>🕒 Medicine Reminder Notifications</h2>
-    <p>Get email reminders for medicine using free services.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1FInlQFUmD4z1-pRCg61UlGE4aGWcv_p2sr0gexyGPCRgGQ/viewform?usp=header" class="button">Set Reminders</a>
+    <h2>📝 Health Checklist</h2>
+    <p>Track your water, meals, and exercise.</p>
+    <a href="health-checklist.html" class="button">Open Checklist</a>
+</section>
+
+<section>
+    <h2>🎁 Feeling Lucky?</h2>
+    <p>Click below for a random health tip.</p>
+    <a href="feeling-lucky.html" class="button">I'm Feeling Lucky</a>
+</section>
+
+<section>
+    <h2>🔗 Referral System</h2>
+    <p>Refer and share SwasthAI with others.</p>
+    <a href="referral.html" class="button">Refer Now</a>
+</section>
+
+<section>
+    <h2>🌐 Language Switcher</h2>
+    <p>Change website language.</p>
+    <a href="language.html" class="button">Switch Language</a>
 </section>
 
 <section>
     <h2>📈 BMI Calculator</h2>
-    <p>Calculate your Body Mass Index based on your height and weight.</p>
-    <a href="https://swasthai.netlify.app/bmi" class="button">Check BMI</a>
-</section>
-
-<section>
-    <h2>🌐 Multi-language (English ↔ Hindi)</h2>
-    <p>Switch site language easily for better experience.</p>
-    <a href="https://swasthai.netlify.app/language" class="button">Switch Language</a>
-</section>
-
-<section>
-    <h2>📍 Nearby Clinics Map</h2>
-    <p>Find nearby health clinics using your location.</p>
-    <a href="https://swasthai.netlify.app/clinics" class="button">Open Map</a>
-</section>
-
-<section>
-    <h2>🗣️ Voice-to-Text Chat Input</h2>
-    <p>Speak instead of typing while chatting with the bot.</p>
-    <a href="https://swasthai.netlify.app/voice" class="button">Enable Voice Chat</a>
-</section>
-
-<section>
-    <h2>🎁 Referral System</h2>
-    <p>Invite friends and earn rewards with your unique code.</p>
-    <a href="https://swasthai.netlify.app/referral" class="button">Share & Earn</a>
-</section>
-
-<section>
-    <h2>❤️ “Feeling Lucky?”</h2>
-    <p>Click for a random health tip or motivational quote.</p>
-    <a href="https://swasthai.netlify.app/lucky" class="button">Feeling Lucky</a>
+    <p>Calculate your Body Mass Index.</p>
+    <a href="bmi.html" class="button">Check BMI</a>
 </section>
 
 <section>
     <h2>📅 Health Calendar</h2>
-    <p>Track your health habits and see tips day-by-day.</p>
-    <a href="https://swasthai.netlify.app/calendar" class="button">View Calendar</a>
+    <p>Track your health habits and tips daily.</p>
+    <a href="calendar.html" class="button">View Calendar</a>
+</section>
+
+<section>
+    <h2>🗣️ Voice Chat Input</h2>
+    <p>Talk instead of typing to the assistant.</p>
+    <a href="voice.html" class="button">Use Voice Chat</a>
+</section>
+
+<section>
+    <h2>🕒 Medicine Reminder</h2>
+    <p>Set email reminders for your medicines.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1FInlQFUmD4z1-pRCg61UlGE4aGWcv_p2sr0gexyGPCRgGQ/viewform?usp=header" class="button">Set Reminder</a>
 </section>
 
 <footer>
@@ -216,10 +216,6 @@
 
     function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
-    }
-
-    function launchChat() {
-        Kommunicate.launchConversation();
     }
 </script>
 
