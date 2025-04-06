@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator - SwasthAI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #fff);
+            padding: 30px;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #008080;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #006666;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📈 BMI Calculator</h2>
+        <p>Enter your height (in cm) and weight (in kg):</p>
+        <input type="number" id="height" placeholder="Height in cm">
+        <input type="number" id="weight" placeholder="Weight in kg">
+        <button onclick="calculateBMI()">Calculate BMI</button>
+        <div class="result" id="bmiResult"></div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const height = parseFloat(document.getElementById('height').value) / 100;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const resultDiv = document.getElementById('bmiResult');
+
+            if (!height || !weight || height <= 0 || weight <= 0) {
+                resultDiv.innerHTML = "Please enter valid height and weight.";
+                return;
+            }
+
+            const bmi = (weight / (height * height)).toFixed(2);
+            let category = "";
+
+            if (bmi < 18.5) category = "Underweight";
+            else if (bmi < 24.9) category = "Normal weight";
+            else if (bmi < 29.9) category = "Overweight";
+            else category = "Obese";
+
+            resultDiv.innerHTML = `Your BMI is <strong>${bmi}</strong> (${category})`;
+        }
+    </script>
+</body>
+</html>
