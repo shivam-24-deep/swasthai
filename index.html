@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>SwasthAI - Your Health Buddy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="manifest" href="manifest.json">
-   <meta name="theme-color" content="#00b894">
-
-
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00b894">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS for UI Enhancements -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- Google Analytics Tag -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MFWZC2CHP4"></script>
@@ -34,16 +35,6 @@
         body.dark-mode {
             background: #121212;
             color: #eee;
-        }
-
-        header {
-            background-color: #008080;
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         section {
@@ -80,19 +71,8 @@
             background: #006666;
         }
 
-        footer {
-            background: #222;
-            color: #aaa;
-            text-align: center;
-            padding: 15px 10px;
-            font-size: 14px;
-            margin-top: 20px;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-        }
-
         @media (max-width: 600px) {
-            header, section, footer {
+            section, footer {
                 padding: 15px;
             }
 
@@ -138,99 +118,113 @@
 </head>
 <body>
 
+<!-- Header with Nav -->
+<header class="sticky top-0 bg-white shadow-md z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+    <a href="#" class="text-xl font-bold text-blue-600">SwasthAI</a>
+    <nav class="hidden md:flex space-x-6">
+      <a href="#" class="text-gray-700 hover:text-blue-600">Home</a>
+      <a href="#features" class="text-gray-700 hover:text-blue-600">Features</a>
+      <a href="HealthTips.html" class="text-gray-700 hover:text-blue-600">Tips</a>
+      <a href="#contact" class="text-gray-700 hover:text-blue-600">Contact</a>
+    </nav>
+    <button class="md:hidden text-gray-700" onclick="toggleMenu()">☰</button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-white shadow-inner">
+    <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
+    <a href="#features" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Features</a>
+    <a href="HealthTips.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Tips</a>
+    <a href="#contact" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Contact</a>
+  </div>
+</header>
+
 <button id="darkToggle" onclick="toggleDarkMode()">Dark</button>
 <div class="help-float" onclick="Kommunicate.launchConversation();">💬 Help?</div>
 
-<header>
-    <h1>Welcome to SwasthAI / स्वागत है स्वास्थAI में</h1>
-    <p>Your Free AI Health Assistant / आपका निःशुल्क एआई स्वास्थ्य सहायक</p>
-</header>
-
+<!-- Sections go here -->
 <section>
-    <h2>📍 Nearby Clinics</h2>
-    <p>Find clinics near your location.</p>
-    <a href="clinics.html" class="button">Find Clinics</a>
+  <h2>📍 Nearby Clinics</h2>
+  <p>Find clinics near your location.</p>
+  <a href="clinics.html" class="button">Find Clinics</a>
 </section>
-
+<!-- Keep your remaining sections as-is -->
 <section>
-    <h2>📝 Health Checklist</h2>
-    <p>Track your water, meals, and exercise.</p>
-    <a href="health-checklist.html" class="button">Open Checklist</a>
+  <h2>📝 Health Checklist</h2>
+  <p>Track your water, meals, and exercise.</p>
+  <a href="health-checklist.html" class="button">Open Checklist</a>
 </section>
-
 <section>
-    <h2>🎁 Feeling Lucky?</h2>
-    <p>Click below for a random health tip.</p>
-    <a href="feeling-lucky.html" class="button">I'm Feeling Lucky</a>
+  <h2>🎁 Feeling Lucky?</h2>
+  <p>Click below for a random health tip.</p>
+  <a href="feeling-lucky.html" class="button">I'm Feeling Lucky</a>
 </section>
-
 <section>
-    <h2>🔗 Referral System</h2>
-    <p>Refer and share SwasthAI with others.</p>
-    <a href="referral.html" class="button">Refer Now</a>
+  <h2>🔗 Referral System</h2>
+  <p>Refer and share SwasthAI with others.</p>
+  <a href="referral.html" class="button">Refer Now</a>
 </section>
-
 <section>
-    <h2>🌐 Language Switcher</h2>
-    <p>Change website language.</p>
-    <a href="language.html" class="button">Switch Language</a>
+  <h2>🌐 Language Switcher</h2>
+  <p>Change website language.</p>
+  <a href="language.html" class="button">Switch Language</a>
 </section>
-
 <section>
-    <h2>📈 BMI Calculator</h2>
-    <p>Calculate your Body Mass Index.</p>
-    <a href="bmi.html" class="button">Check BMI</a>
+  <h2>📈 BMI Calculator</h2>
+  <p>Calculate your Body Mass Index.</p>
+  <a href="bmi.html" class="button">Check BMI</a>
 </section>
-
 <section>
-    <h2>📅 Health Calendar</h2>
-    <p>Track your health habits and tips daily.</p>
-    <a href="calendar.html" class="button">View Calendar</a>
+  <h2>📅 Health Calendar</h2>
+  <p>Track your health habits and tips daily.</p>
+  <a href="calendar.html" class="button">View Calendar</a>
 </section>
-
 <section>
-    <h2>🗣️ Voice Chat Input</h2>
-    <p>Talk instead of typing to the assistant.</p>
-    <a href="voice.html" class="button">Use Voice Chat</a>
+  <h2>🗣️ Voice Chat Input</h2>
+  <p>Talk instead of typing to the assistant.</p>
+  <a href="voice.html" class="button">Use Voice Chat</a>
 </section>
-
 <section>
-    <h2>🕒 Medicine Reminder</h2>
-    <p>Set email reminders for your medicines.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1FInlQFUmD4z1-pRCg61UlGE4aGWcv_p2sr0gexyGPCRgGQ/viewform?usp=header" class="button">Set Reminder</a>
+  <h2>🕒 Medicine Reminder</h2>
+  <p>Set email reminders for your medicines.</p>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSd1FInlQFUmD4z1-pRCg61UlGE4aGWcv_p2sr0gexyGPCRgGQ/viewform?usp=header" class="button">Set Reminder</a>
 </section>
-    <section>
-    <h2>🕒 Health tips vedio </h2>
-    <p>Health tips vedio for your health.</p>
-    <a href=HealthTips.html class="button">Health Tips Vedio</a>
+<section>
+  <h2>🕒 Health tips vedio </h2>
+  <p>Health tips vedio for your health.</p>
+  <a href="HealthTips.html" class="button">Health Tips Vedio</a>
 </section>
-    
-    
 
+<!-- Footer -->
 <footer>
-    <a href="privacy.html">Privacy Policy</a>
-    <p>&copy; 2025 SwasthAI | Built with ❤️ by You <br> 2025 स्वास्थAI | आपके द्वारा ❤️ के साथ बनाया गया</p>
+  <a href="privacy.html">Privacy Policy</a>
+  <p>&copy; 2025 SwasthAI | Built with ❤️ by You <br> 2025 स्वास्थAI | आपके द्वारा ❤️ के साथ बनाया गया</p>
 </footer>
 
-<!-- Kommunicate Script -->
+<!-- Scripts -->
 <script type="text/javascript">
-    (function(d, m){
-        var kommunicateSettings = {
-            "appId": "14f1b5084fbedbb7258a9d155df38a82b",
-            "popupWidget": true,
-            "automaticChatOpenOnNavigation": false
-        };
-        var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
-        s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
-        var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
-        window.kommunicate = m; m._globals = kommunicateSettings;
-    })(document, window.kommunicate || {});
+  (function(d, m){
+      var kommunicateSettings = {
+          "appId": "14f1b5084fbedbb7258a9d155df38a82b",
+          "popupWidget": true,
+          "automaticChatOpenOnNavigation": false
+      };
+      var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+      s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+      var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+      window.kommunicate = m; m._globals = kommunicateSettings;
+  })(document, window.kommunicate || {});
 
-    function toggleDarkMode() {
-        document.body.classList.toggle('dark-mode');
-    }
+  function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+  }
 </script>
-    <script>
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  }
+</script>
+<script>
  if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('service-worker.js')
@@ -239,7 +233,6 @@
   });
 }
 </script>
-
 
 </body>
 </html>
