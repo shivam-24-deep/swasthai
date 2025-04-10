@@ -3,10 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <title>Bookmarked Tips</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #f2f2f2;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 15px 0;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode li {
+      background: #1e1e1e;
+    }
+    button {
+      margin-top: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    .dark-mode button {
+      background: #66bb6a;
+    }
+    .toggle-mode {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h1>🔖 Your Bookmarked Tips</h1>
-  <p>You haven’t bookmarked any health tips yet.</p>
+  <button class="toggle-mode" onclick="toggleDarkMode()">🌗 Toggle Dark Mode</button>
+
+  <h2>All Tips</h2>
+  <ul id="tipList"></ul>
+
+  <h3>Bookmarked Tips</h3>
+  <ul id="bookmarkList"></ul>
+
+  <script>
+    let tips = [];
+
+    // Load bookmarked tip IDs from localStorage
+    function getBookmarkedIds() {
+      return JSON.parse(localStorage.getItem("bookmarkedTipIds") || "[]");
+    }
+
+    // Save bookmarked tip IDs to localStorage
+    function saveBookmarkedIds(ids) {
+      localStorage.setItem("bookmarkedTipIds", JSON.stringify(ids));
+    }
+
+    // Add a tip to bookmarks
+    function addBookmark(index) {
+      const tipId = tips[index].id;
+      let ids = getBookmarkedIds();
+      if (!ids.includes(tipId)) {
+        ids.push(tipId);
+        saveBookmarkedIds(ids);
+        renderBookmarks();
+        alert("✅ Tip Bookmarked!");
+      } else {
+        alert("Already bookmarked.");
+      }
+    }
+
+    // Render the full tip list
+    function renderAllTips() {
+      const list = document.getElementById('tipList');
+      list.innerHTML = tips.map((tip, i) =>
+        `<li>
+          <strong>${tip.tip_en}</strong><br>
+          <em>${tip.tip_hi}</em><br>
+          <button onclick="addBookmark(${i})">🔖 Bookmark</button>
+        </li>`
+      ).join('');
+    }
+
+    // Render only bookmarked tips
+    function renderBookmarks() {
+      const bookmarkIds = getBookmarkedIds();
+      const bookmarks = tips.filter(tip => bookmarkIds.includes(tip.id));
+      const list = document.getElementById('bookmarkList');
+      list.innerHTML = bookmarks.map(tip =>
+        `<li>
+          <strong>${tip.tip_en}</strong><br>
+          <em>${tip.tip_hi}</em>
+        </li>`
+      ).join('');
+    }
+
+    // Dark mode toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    // Fetch tips and render
+    fetch('data/tips.json')
+      .then(res => res.json())
+      .then(data => {
+        tips = data;
+        renderAllTips();
+        renderBookmarks();
+      })
+      .catch(err => {
+        document.getElementById('tipList').innerHTML = '❌ Failed to load tips.';
+        console.error(err);
+      });
+  </script>
 </body>
 </html>
