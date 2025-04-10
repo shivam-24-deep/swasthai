@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Health Tip</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+      margin: 0;
+      padding: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+    .toggle-mode {
+      margin-bottom: 20px;
+      padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .dark-mode .toggle-mode {
+      background: #eee;
+      color: #111;
+    }
+    .tip-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode .tip-card {
+      background: #1e1e1e;
+      color: #ccc;
+    }
+    .tip-card img {
+      max-width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .tip-card h3 {
+      margin: 15px 0 10px;
+    }
+    .refresh-btn {
+      margin-top: 20px;
+      padding: 10px 16px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-mode" onclick="toggleDarkMode()">🌗 Toggle Dark Mode</button>
+
+  <div class="tip-card" id="daily-tip">
+    <p>Loading tip...</p>
+  </div>
+  <div style="text-align:center;">
+    <button class="refresh-btn" onclick="showRandomTip()">🎲 Show Another Tip</button>
+  </div>
+
+  <script>
+    let allTips = [];
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    function showRandomTip() {
+      if (allTips.length === 0) return;
+      const tip = allTips[Math.floor(Math.random() * allTips.length)];
+      const card = document.getElementById('daily-tip');
+      card.innerHTML = `
+        <img src="${tip.image}" alt="Health Tip Image" />
+        <h3>${tip.tip_en}</h3>
+        <p><strong>Hindi:</strong> ${tip.tip_hi}</p>
+        <p><strong>Category:</strong> ${tip.category}</p>
+      `;
+    }
+
+    fetch('data/tips.json')
+      .then(response => response.json())
+      .then(tips => {
+        allTips = tips;
+        showRandomTip();
+      })
+      .catch(error => {
+        console.error('Error loading tips:', error);
+        document.getElementById('daily-tip').innerHTML = "Failed to load tip.";
+      });
+  </script>
+</body>
+</html>
