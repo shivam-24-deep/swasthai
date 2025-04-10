@@ -1,18 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Health Categories</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Health Tips by Category</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f2f2f2;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+    .tip-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin: 20px auto;
+      padding: 15px;
+      max-width: 600px;
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark-mode .tip-card {
+      background: #1e1e1e;
+      color: #ccc;
+    }
+    .tip-img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: start;
+    }
+    select {
+      padding: 8px;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button.toggle-mode {
+      padding: 8px 16px;
+      border-radius: 8px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .dark-mode button.toggle-mode {
+      background-color: #eee;
+      color: #111;
+    }
+  </style>
 </head>
 <body>
-  <h1>📚 Health Categories</h1>
-  <ul>
-    <li>💓 Heart Health</li>
-    <li>🧠 Mental Wellness</li>
-    <li>💪 Fitness & Exercise</li>
-    <li>🍎 Nutrition</li>
-    <li>🩺 General Health</li>
-  </ul>
+  <div class="controls">
+    <select id="categorySelect">
+      <option value="all">🔎 Show All Categories</option>
+    </select>
+    <button class="toggle-mode" onclick="toggleDarkMode()">🌗 Toggle Dark Mode</button>
+  </div>
+
+  <div id="tips-container"></div>
+
+  <script>
+    let allTips = [];
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    function renderTips(tips) {
+      const container = document.getElementById('tips-container');
+      container.innerHTML = '';
+      if (tips.length === 0) {
+        container.innerHTML = "<p>No tips found for this category.</p>";
+        return;
+      }
+      tips.forEach(tip => {
+        const card = document.createElement('div');
+        card.className = 'tip-card';
+        card.innerHTML = `
+          <img class="tip-img" src="${tip.image}" alt="Health Tip" />
+          <h3>${tip.tip_en}</h3>
+          <p><strong>Hindi:</strong> ${tip.tip_hi}</p>
+          <p><strong>Category:</strong> ${tip.category}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function populateCategories(tips) {
+      const select = document.getElementById('categorySelect');
+      const categories = Array.from(new Set(tips.map(t => t.category)));
+      categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = cat;
+        select.appendChild(option);
+      });
+    }
+
+    document.getElementById('categorySelect').addEventListener('change', function () {
+      const selected = this.value;
+      if (selected === 'all') {
+        renderTips(allTips);
+      } else {
+        const filtered = allTips.filter(t => t.category === selected);
+        renderTips(filtered);
+      }
+    });
+
+    fetch('data/tips.json')
+      .then(response => response.json())
+      .then(data => {
+        allTips = data;
+        renderTips(allTips);
+        populateCategories(allTips);
+      })
+      .catch(error => {
+        console.error('Error loading tips:', error);
+        document.getElementById('tips-container').innerText = "Failed to load tips.";
+      });
+  </script>
 </body>
 </html>
