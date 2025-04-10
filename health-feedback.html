@@ -85,7 +85,7 @@
       alert(`Thanks for your feedback on Tip #${tipId} - You marked it as ${isHelpful ? "Helpful" : "Not Helpful"}.`);
     }
 
-    fetch('data/tips.json')
+    fetch('tips.json')
       .then(response => response.json())
       .then(tips => {
         const container = document.getElementById('feedback-container');
