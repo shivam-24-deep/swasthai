@@ -1,0 +1,487 @@
+[
+    
+    {
+      "id": 1,
+      "tip_en": "Drink at least 8 glasses of water daily to stay hydrated.",
+      "tip_hi": "स्वस्थ रहने के लिए रोज़ाना कम से कम 8 गिलास पानी पिएं।",
+      "category": "Hydration",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/2933/2933849.png"
+    },
+    {
+      "id": 2,
+      "tip_en": "Walk for 30 minutes every day to improve heart health.",
+      "tip_hi": "हृदय स्वास्थ्य के लिए रोज़ 30 मिनट पैदल चलें।",
+      "category": "Exercise",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
+    },
+    {
+      "id": 3,
+      "tip_en": "Eat a variety of colorful fruits and vegetables.",
+      "tip_hi": "रंग-बिरंगे फल और सब्ज़ियाँ खाएं।",
+      "category": "Nutrition",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/135/135620.png"
+    },
+    {
+      "id": 4,
+      "tip_en": "Sleep 7–8 hours each night for better mental health.",
+      "tip_hi": "बेहतर मानसिक स्वास्थ्य के लिए हर रात 7–8 घंटे सोएं।",
+      "category": "Sleep",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/3448/3448332.png"
+    },
+    {
+      "id": 5,
+      "tip_en": "Wash your hands before meals to prevent infections.",
+      "tip_hi": "संक्रमण से बचाव के लिए भोजन से पहले हाथ धोएं।",
+      "category": "Hygiene",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/2913/2913464.png"
+    },
+    {
+      "id": 6,
+      "tip_en": "Practice deep breathing to reduce stress.",
+      "tip_hi": "तनाव कम करने के लिए गहरी साँस लेने का अभ्यास करें।",
+      "category": "Mental Health",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/3665/3665809.png"
+    },
+    {
+      "id": 7,
+      "tip_en": "Avoid sugary drinks to protect your teeth and weight.",
+      "tip_hi": "दाँत और वज़न को सुरक्षित रखने के लिए मीठे पेयों से बचें।",
+      "category": "Nutrition",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/135/135651.png"
+    },
+    {
+      "id": 8,
+      "tip_en": "Limit screen time and take regular breaks.",
+      "tip_hi": "स्क्रीन टाइम को सीमित करें और नियमित ब्रेक लें।",
+      "category": "Eye Health",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/2098/2098400.png"
+    },
+    {
+      "id": 9,
+      "tip_en": "Brush your teeth twice daily to prevent cavities.",
+      "tip_hi": "दांतों में कीड़ा लगने से बचने के लिए दिन में दो बार ब्रश करें।",
+      "category": "Dental Care",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/1086/1086933.png"
+    },
+    {
+      "id": 10,
+      "tip_en": "Include leafy greens in your diet for better digestion.",
+      "tip_hi": "पाचन सुधारने के लिए अपने आहार में हरी पत्तेदार सब्जियाँ शामिल करें।",
+      "category": "Nutrition",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/706/706164.png"
+    },
+    {
+      "id": 11,
+      "tip_en": "Use stairs instead of elevators whenever possible.",
+      "tip_hi": "जहाँ संभव हो, लिफ्ट की बजाय सीढ़ियों का उपयोग करें।",
+      "category": "Fitness",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/590/590685.png"
+    },
+    {
+      "id": 12,
+      "tip_en": "Protect your skin from sun exposure using sunscreen.",
+      "tip_hi": "सूरज की किरणों से बचने के लिए सनस्क्रीन का उपयोग करें।",
+      "category": "Skin Care",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/2723/2723616.png"
+    },
+    {
+      "id": 13,
+      "tip_en": "Keep your back straight to avoid posture problems.",
+      "tip_hi": "पोश्चर की समस्याओं से बचने के लिए पीठ सीधी रखें।",
+      "category": "Posture",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/2554/2554974.png"
+    },
+    {
+      "id": 14,
+      "tip_en": "Use mosquito repellents to avoid vector-borne diseases.",
+      "tip_hi": "मच्छर जनित बीमारियों से बचने के लिए रिपेलेंट्स का प्रयोग करें।",
+      "category": "Prevention",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/3172/3172324.png"
+    },
+    {
+      "id": 15,
+      "tip_en": "Eat at regular times to maintain a healthy metabolism.",
+      "tip_hi": "स्वस्थ मेटाबोलिज़्म के लिए नियमित समय पर भोजन करें।",
+      "category": "Nutrition",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/3081/3081967.png"
+    },
+    {
+      "id": 16,
+      "tip_en": "Always read medicine labels before use.",
+      "tip_hi": "दवा उपयोग से पहले लेबल को ध्यान से पढ़ें।",
+      "category": "Safety",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/2623/2623443.png"
+    },
+    {
+      "id": 17,
+      "tip_en": "Keep emergency numbers handy at all times.",
+      "tip_hi": "आपातकालीन नंबर हमेशा पास रखें।",
+      "category": "Emergency",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/2965/2965567.png"
+    },
+    {
+      "id": 18,
+      "tip_en": "Spend quality time with family to boost mental well-being.",
+      "tip_hi": "मानसिक स्वास्थ्य के लिए परिवार के साथ अच्छा समय बिताएं।",
+      "category": "Mental Health",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/609/609803.png"
+    },
+    {
+      "id": 19,
+      "tip_en": "Avoid junk food to maintain a healthy lifestyle.",
+      "tip_hi": "स्वस्थ जीवनशैली के लिए जंक फूड से बचें।",
+      "category": "Nutrition",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/3135/3135706.png"
+    },
+    {
+      "id": 20,
+      "tip_en": "Wash fruits and vegetables before eating.",
+      "tip_hi": "फल और सब्ज़ियाँ खाने से पहले धोएं।",
+      "category": "Hygiene",
+      "language": "both",
+      "image": "https://cdn-icons-png.flaticon.com/512/1475/1475768.png"
+    },
+    
+        {
+          "id": 21,
+          "tip_en": "Stretch for a few minutes every morning to stay flexible.",
+          "tip_hi": "लचीलापन बनाए रखने के लिए हर सुबह कुछ मिनट स्ट्रेच करें।",
+          "category": "Exercise",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/4312/4312606.png"
+        },
+        {
+          "id": 22,
+          "tip_en": "Limit salt intake to keep your blood pressure in control.",
+          "tip_hi": "रक्तचाप नियंत्रित रखने के लिए नमक का सेवन सीमित करें।",
+          "category": "Nutrition",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/1769/1769451.png"
+        },
+        {
+          "id": 23,
+          "tip_en": "Use warm water instead of hot for bathing to protect skin.",
+          "tip_hi": "त्वचा की सुरक्षा के लिए नहाने में गर्म की बजाय गुनगुना पानी इस्तेमाल करें।",
+          "category": "Skin Care",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/861/861512.png"
+        },
+        {
+          "id": 24,
+          "tip_en": "Meditate daily for a peaceful mind and better focus.",
+          "tip_hi": "शांत मन और बेहतर एकाग्रता के लिए रोज ध्यान करें।",
+          "category": "Mental Health",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/4322/4322991.png"
+        },
+        {
+          "id": 25,
+          "tip_en": "Don't skip breakfast; it boosts your energy levels.",
+          "tip_hi": "नाश्ता कभी न छोड़ें; यह आपकी ऊर्जा बढ़ाता है।",
+          "category": "Nutrition",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/876/876093.png"
+        },
+        {
+          "id": 26,
+          "tip_en": "Avoid smoking and alcohol to prevent chronic diseases.",
+          "tip_hi": "दीर्घकालिक बीमारियों से बचने के लिए धूम्रपान और शराब से बचें।",
+          "category": "Prevention",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/1148/1148298.png"
+        },
+        {
+          "id": 27,
+          "tip_en": "Get vaccinated to protect yourself and others.",
+          "tip_hi": "स्वयं और दूसरों की सुरक्षा के लिए टीकाकरण करवाएं।",
+          "category": "Immunity",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/3106/3106999.png"
+        },
+        {
+          "id": 28,
+          "tip_en": "Take stairs one step at a time to avoid injuries.",
+          "tip_hi": "चोट से बचने के लिए सीढ़ियाँ एक-एक करके चढ़ें।",
+          "category": "Safety",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/4322/4322731.png"
+        },
+        {
+          "id": 29,
+          "tip_en": "Consume probiotics like curd for better gut health.",
+          "tip_hi": "बेहतर पाचन के लिए दही जैसे प्रोबायोटिक खाएं।",
+          "category": "Nutrition",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/4310/4310627.png"
+        },
+        {
+          "id": 30,
+          "tip_en": "Wear a helmet while riding two-wheelers for safety.",
+          "tip_hi": "दो-पहिया वाहन चलाते समय हेलमेट पहनें।",
+          "category": "Safety",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2099/2099078.png"
+        },
+        {
+          "id": 31,
+          "tip_en": "Avoid loud music to protect your ears from damage.",
+          "tip_hi": "कानों की सुरक्षा के लिए तेज़ संगीत से बचें।",
+          "category": "Ear Health",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/190/190406.png"
+        },
+        {
+          "id": 32,
+          "tip_en": "Use a reusable water bottle to stay hydrated and eco-friendly.",
+          "tip_hi": "हाइड्रेटेड और पर्यावरण के प्रति सजग रहने के लिए पुनः उपयोग योग्य बोतल का उपयोग करें।",
+          "category": "Hydration",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/4490/4490197.png"
+        },
+        {
+          "id": 33,
+          "tip_en": "Check food expiry dates before consumption.",
+          "tip_hi": "खाने से पहले उसकी समाप्ति तिथि ज़रूर देखें।",
+          "category": "Safety",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/1028/1028916.png"
+        },
+        {
+          "id": 34,
+          "tip_en": "Blink regularly when using a screen to avoid dry eyes.",
+          "tip_hi": "स्क्रीन का उपयोग करते समय सूखी आँखों से बचने के लिए नियमित रूप से पलकें झपकाएं।",
+          "category": "Eye Health",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/3135/3135765.png"
+        },
+        {
+          "id": 35,
+          "tip_en": "Take a short walk after meals for digestion.",
+          "tip_hi": "पाचन के लिए भोजन के बाद थोड़ी देर टहलें।",
+          "category": "Digestion",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/1046/1046784.png"
+        },
+        {
+          "id": 36,
+          "tip_en": "Don't ignore minor injuries; clean and cover them properly.",
+          "tip_hi": "छोटे घावों को नज़रअंदाज़ न करें; सही से साफ़ करके पट्टी लगाएं।",
+          "category": "First Aid",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2933/2933826.png"
+        },
+        {
+          "id": 37,
+          "tip_en": "Consume seasonal fruits to get natural nutrients.",
+          "tip_hi": "प्राकृतिक पोषक तत्व पाने के लिए मौसमी फल खाएं।",
+          "category": "Nutrition",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/135/135672.png"
+        },
+        {
+          "id": 38,
+          "tip_en": "Avoid sharing personal items like towels and razors.",
+          "tip_hi": "तौलिया और रेज़र जैसी व्यक्तिगत वस्तुएँ साझा न करें।",
+          "category": "Hygiene",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/1010/1010748.png"
+        },
+        {
+          "id": 39,
+          "tip_en": "Stay connected with friends to reduce loneliness.",
+          "tip_hi": "अकेलापन कम करने के लिए दोस्तों से जुड़े रहें।",
+          "category": "Mental Health",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/921/921347.png"
+        },
+        {
+          "id": 40,
+          "tip_en": "Keep your surroundings clean to avoid illness.",
+          "tip_hi": "बीमारियों से बचाव के लिए अपने आस-पास सफ़ाई रखें।",
+          "category": "Hygiene",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2921/2921822.png"
+        },
+        {
+          "id": 41,
+          "tip_en": "Practice yoga to improve physical and mental balance.",
+          "tip_hi": "शारीरिक और मानसिक संतुलन के लिए योग का अभ्यास करें।",
+          "category": "Exercise",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/3829/3829843.png"
+        },
+        {
+          "id": 42,
+          "tip_en": "Use a pillow that supports your neck while sleeping.",
+          "tip_hi": "सोते समय गर्दन को सहारा देने वाला तकिया इस्तेमाल करें।",
+          "category": "Sleep",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/950/950128.png"
+        },
+        {
+          "id": 43,
+          "tip_en": "Clean your mobile screen regularly to avoid germs.",
+          "tip_hi": "कीटाणुओं से बचने के लिए अपने मोबाइल की स्क्रीन को नियमित रूप से साफ करें।",
+          "category": "Hygiene",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2917/2917242.png"
+        },
+        {
+          "id": 44,
+          "tip_en": "Don’t overeat; stop when you're 80% full.",
+          "tip_hi": "अधिक न खाएं; जब 80% पेट भर जाए तो रुक जाएं।",
+          "category": "Nutrition",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/476/476863.png"
+        },
+        {
+          "id": 45,
+          "tip_en": "Use proper lighting while reading to avoid eye strain.",
+          "tip_hi": "आँखों पर ज़ोर न पड़े इसके लिए पढ़ते समय उचित रोशनी का उपयोग करें।",
+          "category": "Eye Health",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2098/2098593.png"
+        },
+        {
+          "id": 46,
+          "tip_en": "Keep nails trimmed and clean to avoid infections.",
+          "tip_hi": "संक्रमण से बचने के लिए नाखूनों को छोटा और साफ रखें।",
+          "category": "Hygiene",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2991/2991222.png"
+        },
+        {
+          "id": 47,
+          "tip_en": "Avoid skipping meals; it leads to poor health.",
+          "tip_hi": "भोजन छोड़ने से स्वास्थ्य पर बुरा असर पड़ता है, ऐसा न करें।",
+          "category": "Nutrition",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/1721/1721934.png"
+        },
+        {
+          "id": 48,
+          "tip_en": "Always wear clean clothes to prevent skin problems.",
+          "tip_hi": "त्वचा की समस्याओं से बचने के लिए हमेशा साफ़ कपड़े पहनें।",
+          "category": "Skin Care",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2864/2864627.png"
+        },
+        {
+          "id": 49,
+          "tip_en": "Get regular checkups to detect issues early.",
+          "tip_hi": "समस्याओं की शुरुआती पहचान के लिए नियमित जांच कराएं।",
+          "category": "Prevention",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2706/2706938.png"
+        },
+        {
+          "id": 50,
+          "tip_en": "Keep your feet dry to avoid fungal infections.",
+          "tip_hi": "फंगल संक्रमण से बचने के लिए अपने पैरों को सूखा रखें।",
+          "category": "Skin Care",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/3537/3537879.png"
+        },
+        {
+          "id": 51,
+          "tip_en": "Chew food properly to aid digestion.",
+          "tip_hi": "पाचन में मदद के लिए भोजन को अच्छी तरह चबाएं।",
+          "category": "Digestion",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/706/706195.png"
+        },
+        {
+          "id": 52,
+          "tip_en": "Stay active even during work by taking short walks.",
+          "tip_hi": "काम के दौरान भी सक्रिय रहें, छोटे-छोटे ब्रेक में टहलें।",
+          "category": "Fitness",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2704/2704427.png"
+        },
+        {
+          "id": 53,
+          "tip_en": "Keep a health journal to track habits and symptoms.",
+          "tip_hi": "आदतों और लक्षणों पर नज़र रखने के लिए स्वास्थ्य डायरी रखें।",
+          "category": "Wellness",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2965/2965563.png"
+        },
+        {
+          "id": 54,
+          "tip_en": "Don’t delay visiting a doctor for ongoing discomfort.",
+          "tip_hi": "लगातार असुविधा होने पर डॉक्टर से मिलने में देरी न करें।",
+          "category": "Medical Advice",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2921/2921887.png"
+        },
+        {
+          "id": 55,
+          "tip_en": "Open windows for fresh air and better ventilation.",
+          "tip_hi": "ताज़ी हवा के लिए खिड़कियाँ खोलें और वेंटिलेशन बनाए रखें।",
+          "category": "Wellness",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/1674/1674242.png"
+        },
+        {
+          "id": 56,
+          "tip_en": "Eat home-cooked meals more often to avoid preservatives.",
+          "tip_hi": "प्रिज़र्वेटिव से बचने के लिए घर का बना खाना ज़्यादा खाएं।",
+          "category": "Nutrition",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2474/2474426.png"
+        },
+        {
+          "id": 57,
+          "tip_en": "Be mindful while eating; avoid distractions like TV.",
+          "tip_hi": "खाने के समय ध्यान रखें; टीवी जैसी चीज़ों से ध्यान न भटकाएं।",
+          "category": "Mindfulness",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/174/174882.png"
+        },
+        {
+          "id": 58,
+          "tip_en": "Support your back while sitting for long hours.",
+          "tip_hi": "लंबे समय तक बैठते समय अपनी पीठ को सहारा दें।",
+          "category": "Posture",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2717/2717378.png"
+        },
+        {
+          "id": 59,
+          "tip_en": "Take care of your mental health as much as physical health.",
+          "tip_hi": "जैसे आप शारीरिक स्वास्थ्य का ध्यान रखते हैं, वैसे ही मानसिक स्वास्थ्य का भी रखें।",
+          "category": "Mental Health",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/4321/4321274.png"
+        },
+        {
+          "id": 60,
+          "tip_en": "Listen to your body and rest when needed.",
+          "tip_hi": "अपने शरीर की सुनें और ज़रूरत होने पर आराम करें।",
+          "category": "Wellness",
+          "language": "both",
+          "image": "https://cdn-icons-png.flaticon.com/512/2695/2695357.png"
+        }
+      
+      
+  ]
+  
