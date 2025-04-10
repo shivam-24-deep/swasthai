@@ -106,7 +106,7 @@
       renderTips(allTips, selectedLang);
     });
 
-    fetch('data/tips.json')
+    fetch('tips.json')
       .then(response => response.json())
       .then(data => {
         allTips = data;
