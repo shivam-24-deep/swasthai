@@ -1,114 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Health Tips Feedback</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Feedback</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
       padding: 20px;
-      background-color: #f2f2f2;
-      color: #333;
-      transition: background-color 0.3s, color 0.3s;
+      background-color: #f4f4f4;
     }
-    .dark-mode {
-      background-color: #121212;
-      color: #eee;
+    .form-group {
+      margin-bottom: 15px;
     }
-    .toggle-mode {
-      margin-bottom: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background: #333;
-      color: #fff;
-      cursor: pointer;
+    label {
+      font-weight: bold;
     }
-    .dark-mode .toggle-mode {
-      background: #eee;
-      color: #111;
-    }
-    .feedback-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    .tip-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: background 0.3s, color 0.3s;
-    }
-    .dark-mode .tip-card {
-      background: #1e1e1e;
-      color: #ccc;
-    }
-    .tip-card img {
+    input, textarea {
       width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
-    .buttons {
-      margin-top: 10px;
-    }
-    .buttons button {
-      padding: 8px 12px;
-      margin-right: 10px;
+    button {
+      padding: 10px 15px;
+      background-color: #28a745;
+      color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
     }
-    .like-btn {
-      background-color: #4caf50;
-      color: white;
-    }
-    .dislike-btn {
-      background-color: #f44336;
-      color: white;
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <button class="toggle-mode" onclick="toggleDarkMode()">🌗 Toggle Dark Mode</button>
-  <div class="feedback-container" id="feedback-container"></div>
+  <h2>Give Your Feedback</h2>
+  <form id="feedbackForm">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+    </div>
+    <div class="form-group">
+      <label for="message">Message:</label>
+      <textarea id="messageText" rows="4" required></textarea>
+    </div>
+    <button type="submit">Submit</button>
+    <div id="message"></div>
+  </form>
 
   <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-    }
+    const form = document.getElementById('feedbackForm');
+    const msg = document.getElementById('message');
 
-    function handleFeedback(tipId, isHelpful) {
-      alert(`Thanks for your feedback on Tip #${tipId} - You marked it as ${isHelpful ? "Helpful" : "Not Helpful"}.`);
-    }
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    fetch('tips.json')
-      .then(response => response.json())
-      .then(tips => {
-        const container = document.getElementById('feedback-container');
-        tips.forEach(tip => {
-          const card = document.createElement('div');
-          card.className = 'tip-card';
-          card.innerHTML = `
-            <img src="${tip.image}" alt="Tip Image" />
-            <h3>${tip.tip_en}</h3>
-            <p><strong>Hindi:</strong> ${tip.tip_hi}</p>
-            <p><strong>Category:</strong> ${tip.category}</p>
-            <div class="buttons">
-              <button class="like-btn" onclick="handleFeedback(${tip.id}, true)">👍 Helpful</button>
-              <button class="dislike-btn" onclick="handleFeedback(${tip.id}, false)">👎 Not Helpful</button>
-            </div>
-          `;
-          container.appendChild(card);
-        });
+      const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('messageText').value
+      };
+
+      // Replace the Google Apps Script URL with your backend API URL
+      fetch('http://localhost:5000/api/feedback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
       })
-      .catch(err => {
-        console.error('Error loading tips:', err);
-        document.getElementById('feedback-container').innerText = "Failed to load tips.";
-      });
+        .then(res => res.json())
+        .then(response => {
+          msg.textContent = "✅ Feedback submitted successfully!";
+          msg.style.color = "green";
+          form.reset();
+        })
+        .catch(err => {
+          console.error(err);
+          msg.textContent = "❌ Error! Please try again later.";
+          msg.style.color = "red";
+        });
+    });
   </script>
 </body>
 </html>
